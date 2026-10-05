@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
+const bodoniModa = Bodoni_Moda({ subsets: ["latin"], variable: "--font-bodoni", style: ["normal", "italic"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://koshaljoshi.com"), // Placeholder canonical URL
@@ -36,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased bg-black text-white selection:bg-white selection:text-black`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${bodoniModa.variable} font-sans antialiased bg-black text-white selection:bg-white selection:text-black`}
       >
         <SmoothScroll>
           {children}
