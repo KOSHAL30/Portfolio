@@ -7,81 +7,83 @@ import Image from "next/image";
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-32 px-6 md:px-12 lg:px-12 bg-black text-white">
+    <section id="projects" className="py-32 px-6 md:px-12 lg:px-12 bg-black text-white overflow-hidden">
       
-      <div className="mb-24 flex justify-between items-end border-b border-white/20 pb-8">
-        <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight">
-          Selected<br/>Works
-        </h2>
-        <span className="text-xs uppercase tracking-widest text-gray-400">
-          [ 2024 — Present ]
+      <div className="mb-24 flex flex-col items-center justify-center border-b border-white/10 pb-16">
+        <span className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-6">
+          WORKS
         </span>
+        <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter">
+          Selected works
+        </h2>
       </div>
 
       <div className="space-y-40">
         {siteData.projects.map((project, index) => (
-          <ProjectCard key={index} project={project as unknown as Record<string, string>} index={index} />
+          <ProjectCard key={index} project={project as unknown as Record<string, string>} />
         ))}
       </div>
     </section>
   );
 }
 
-function ProjectCard({ project, index }: { project: Record<string, string>, index: number }) {
+function ProjectCard({ project }: { project: Record<string, string> }) {
   const ref = useRef<HTMLDivElement>(null);
 
-  // JARVIS gets a full-width hero presentation
-  const isFeatured = index === 0;
-
+  // In Cosmos Studio, images are massive and centered, with meta data on left/right edges
   return (
-    <div ref={ref} className={`group relative flex ${isFeatured ? 'flex-col gap-12' : 'flex-col md:flex-row gap-12 items-center'}`}>
+    <div ref={ref} className="group relative flex flex-col items-center w-full">
       
-      {/* Editorial Text Block */}
-      <div className={`${isFeatured ? 'w-full grid grid-cols-1 md:grid-cols-2 gap-8' : 'w-full md:w-1/3 flex flex-col'} ${!isFeatured && index % 2 !== 0 ? 'md:order-2' : ''}`}>
-        <div className="overflow-hidden">
-          <span className="block text-xs text-gray-500 uppercase tracking-[0.2em] mb-4">
-            [ {project.id} — {project.category} ]
-          </span>
-          <h3 className={`font-display font-bold tracking-tight uppercase leading-none mb-6 ${isFeatured ? 'text-5xl md:text-7xl' : 'text-4xl md:text-5xl'}`}>
-            {project.title}
-          </h3>
-        </div>
-        <div className={`${isFeatured ? 'flex flex-col justify-end' : ''}`}>
-          <p className="text-gray-400 text-sm md:text-base leading-relaxed font-light mb-8 max-w-lg">
-            {project.description}
-          </p>
-          
-          <div className="mb-10">
-            <span className="text-[10px] uppercase tracking-widest text-gray-500 font-mono">
-              [ Tech Stack ]
-            </span>
-            <p className="text-xs uppercase tracking-[0.1em] text-gray-300 mt-2 font-mono">
-              {project.tech}
-            </p>
-          </div>
-
-          {project.link && project.link !== "#" && (
-            <a href={project.link} className="inline-block border-b border-white pb-1 text-xs uppercase tracking-[0.2em] font-bold hover:text-gray-400 hover:border-gray-400 transition-colors">
-              Explore Project
-            </a>
-          )}
-        </div>
+      {/* Meta Data Sidebar - Absolute positioned on Desktop */}
+      <div className="hidden lg:block absolute left-4 xl:left-12 top-1/2 -translate-y-1/2 text-left z-10 pointer-events-none">
+         <div className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-1">ID</div>
+         <div className="text-sm font-medium">{project.id}</div>
       </div>
 
-      {/* Image Container */}
-      <div className={`${isFeatured ? 'w-full aspect-[16/9]' : 'w-full md:w-2/3 aspect-video md:aspect-[4/3]'} relative overflow-hidden bg-[#0a0a0a] rounded-sm ${!isFeatured && index % 2 !== 0 ? 'md:order-1' : ''} border border-white/5`}>
-        <div className="absolute inset-0 w-full h-full p-4 md:p-8 flex items-center justify-center">
-          <Image 
-            src={project.image} 
-            alt={project.title}
-            fill
-            className="object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-500 p-4 md:p-8"
-            sizes="(max-width: 768px) 100vw, 100vw"
-            quality={100}
-            unoptimized={true}
-            priority={isFeatured}
-          />
+      <div className="hidden lg:block absolute right-4 xl:right-12 top-1/2 -translate-y-1/2 text-right z-10 pointer-events-none">
+         <div className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-1">Niche</div>
+         <div className="text-sm font-medium">{project.category}</div>
+      </div>
+
+      {/* Massive Image Container */}
+      <a href={project.link !== "#" ? project.link : undefined} className="relative w-full lg:w-[80%] aspect-video md:aspect-[16/9] overflow-hidden bg-[#0a0a0a] rounded-2xl border border-white/5 block">
+        
+        {/* Floating Pill on Hover */}
+        <div className="absolute top-8 inset-x-0 mx-auto w-max z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+           <div className="flex items-center gap-4 bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 text-xs font-medium uppercase tracking-wider">
+             <span>{project.title}</span>
+             <div className="w-[1px] h-3 bg-white/30"></div>
+             <span>See work</span>
+           </div>
         </div>
+
+        <Image 
+          src={project.image} 
+          alt={project.title}
+          fill
+          className="object-cover md:object-contain opacity-80 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700 ease-out p-0 md:p-12"
+          sizes="100vw"
+          quality={100}
+        />
+      </a>
+
+      {/* Mobile Meta Data & Details */}
+      <div className="w-full lg:w-[80%] mt-8 flex flex-col md:flex-row justify-between items-start gap-8">
+         <div className="flex-1">
+            <h3 className="text-3xl md:text-4xl font-display font-medium tracking-tight mb-4">{project.title}</h3>
+            <p className="text-sm text-gray-400 max-w-md leading-relaxed">{project.description}</p>
+         </div>
+         
+         <div className="flex flex-row md:flex-col gap-8 md:gap-4 md:text-right w-full md:w-auto justify-between md:justify-start">
+            <div className="lg:hidden">
+               <div className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-1">Niche</div>
+               <div className="text-sm font-medium">{project.category}</div>
+            </div>
+            <div>
+               <div className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-1">Tech Stack</div>
+               <div className="font-mono text-xs text-gray-300 max-w-[200px]">{project.tech}</div>
+            </div>
+         </div>
       </div>
 
     </div>
