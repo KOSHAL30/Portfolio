@@ -47,7 +47,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="font-editorial text-5xl md:text-7xl lg:text-8xl tracking-tight uppercase leading-[0.9] mb-12"
+            className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.9] mb-12"
           >
             LET&apos;S BUILD<br />SOMETHING.
           </motion.h2>

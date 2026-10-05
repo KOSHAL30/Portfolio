@@ -8,7 +8,7 @@ export default function Services() {
     <section id="services" className="py-32 px-6 md:px-12 lg:px-12 bg-atmospheric text-white" style={{ '--light-x': '30%', '--light-y': '50%' } as React.CSSProperties}>
       
       <div className="mb-24 flex justify-between items-end border-b border-white/20 pb-8">
-        <h2 className="font-editorial text-5xl md:text-7xl lg:text-8xl tracking-tight uppercase">
+        <h2 className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase">
           Capabilities
         </h2>
         <span className="text-xs uppercase tracking-widest text-gray-400">

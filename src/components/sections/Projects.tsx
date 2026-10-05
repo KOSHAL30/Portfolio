@@ -34,7 +34,7 @@ export default function Projects() {
           <span className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-6">
             WORKS
           </span>
-          <h2 className="font-editorial text-5xl md:text-7xl lg:text-8xl tracking-tight uppercase">
+          <h2 className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase">
             Selected works
           </h2>
         </div>

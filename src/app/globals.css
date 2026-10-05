@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-space);
-  --font-editorial: var(--font-bodoni);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space), ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: var(--font-bodoni), ui-serif, Georgia, serif;
 }
 
 body {
@@ -12,7 +12,10 @@ body {
 }
 
 @utility bg-atmospheric {
-  background-image: radial-gradient(circle at var(--light-x, 50%) var(--light-y, 50%), #141414 0%, #050505 40%, #000000 80%);
+  background-color: #0a0a0a;
+  background-image: 
+    radial-gradient(circle at var(--light-x, 50%) var(--light-y, 50%), #1f1f1f 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, transparent 40%, #000000 100%);
 }
 
 /* Hide scrollbar for an editorial feel */

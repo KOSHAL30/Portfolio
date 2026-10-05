@@ -17,7 +17,7 @@ export default function Process() {
     <section id="process" ref={containerRef} className="py-32 px-6 md:px-12 lg:px-12 bg-atmospheric text-white relative" style={{ '--light-x': '10%', '--light-y': '80%' } as React.CSSProperties}>
       
       <motion.div style={{ opacity }} className="mb-24 flex justify-between items-end border-b border-white/20 pb-8">
-        <h2 className="font-editorial text-5xl md:text-7xl lg:text-8xl tracking-tight uppercase">
+        <h2 className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase">
           Methodology
         </h2>
         <span className="text-xs uppercase tracking-widest text-gray-400">
