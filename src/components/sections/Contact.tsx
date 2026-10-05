@@ -167,9 +167,9 @@ export default function Contact() {
       <div className="flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-600 border-t border-white/20 pt-8">
         <span>&copy; {new Date().getFullYear()} Koshal Joshi</span>
         <div className="flex gap-8 mt-6 md:mt-0">
-          <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
-          <a href="#" className="hover:text-white transition-colors">GitHub</a>
-          <a href="#" className="hover:text-white transition-colors">Twitter</a>
+          <a href="https://www.linkedin.com/in/koushal-joshi-222692377" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+          <a href="https://www.instagram.com/koshal__joshi__06?stkn=MWFzazEwZnl6NDhtNA==" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
+          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WhatsApp</a>
         </div>
       </div>
     </footer>
