@@ -16,11 +16,11 @@ export default function Process() {
   return (
     <section id="process" ref={containerRef} className="py-32 px-6 md:px-12 lg:px-12 bg-atmospheric text-white relative" style={{ '--light-x': '10%', '--light-y': '80%' } as React.CSSProperties}>
       
-      <motion.div style={{ opacity }} className="mb-24 flex justify-between items-end border-b border-white/20 pb-8">
-        <h2 className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase">
+      <motion.div style={{ opacity }} className="mb-16 md:mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-0 border-b border-white/20 pb-8">
+        <h2 className="font-editorial text-[clamp(3rem,10vw,4.5rem)] md:text-6xl lg:text-7xl tracking-tight uppercase leading-none">
           Methodology
         </h2>
-        <span className="text-xs uppercase tracking-widest text-gray-400">
+        <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-mono">
           [ The Approach ]
         </span>
       </motion.div>

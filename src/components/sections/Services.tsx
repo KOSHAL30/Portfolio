@@ -7,11 +7,11 @@ export default function Services() {
   return (
     <section id="services" className="py-32 px-6 md:px-12 lg:px-12 bg-atmospheric text-white" style={{ '--light-x': '30%', '--light-y': '50%' } as React.CSSProperties}>
       
-      <div className="mb-24 flex justify-between items-end border-b border-white/20 pb-8">
-        <h2 className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase">
+      <div className="mb-16 md:mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-0 border-b border-white/20 pb-8">
+        <h2 className="font-editorial text-[clamp(3rem,10vw,4.5rem)] md:text-6xl lg:text-7xl tracking-tight uppercase leading-none">
           Capabilities
         </h2>
-        <span className="text-xs uppercase tracking-widest text-gray-400">
+        <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-mono">
           [ Engineering & Design ]
         </span>
       </div>
