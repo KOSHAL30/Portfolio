@@ -11,6 +11,10 @@ body {
   color: #ffffff;
 }
 
+@utility bg-atmospheric {
+  background-image: radial-gradient(circle at var(--light-x, 50%) var(--light-y, 50%), #141414 0%, #050505 40%, #000000 80%);
+}
+
 /* Hide scrollbar for an editorial feel */
 ::-webkit-scrollbar {
   display: none;

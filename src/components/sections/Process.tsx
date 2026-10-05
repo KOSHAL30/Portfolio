@@ -14,10 +14,10 @@ export default function Process() {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <section id="process" ref={containerRef} className="py-32 px-6 md:px-12 lg:px-12 bg-black text-white relative">
+    <section id="process" ref={containerRef} className="py-32 px-6 md:px-12 lg:px-12 bg-atmospheric text-white relative" style={{ '--light-x': '10%', '--light-y': '80%' } as React.CSSProperties}>
       
       <motion.div style={{ opacity }} className="mb-24 flex justify-between items-end border-b border-white/20 pb-8">
-        <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight">
+        <h2 className="font-editorial text-5xl md:text-7xl lg:text-8xl tracking-tight uppercase">
           Methodology
         </h2>
         <span className="text-xs uppercase tracking-widest text-gray-400">
@@ -37,14 +37,14 @@ export default function Process() {
           >
             {/* Number */}
             <div className="w-full md:w-1/6 mb-6 md:mb-0">
-              <span className="font-display text-3xl md:text-5xl font-bold text-gray-500 group-hover:text-white transition-colors">
+              <span className="font-sans text-3xl md:text-5xl font-medium text-gray-500 group-hover:text-white transition-colors">
                 {item.step}
               </span>
             </div>
 
             {/* Title */}
             <div className="w-full md:w-2/6 mb-6 md:mb-0 pr-8">
-              <h3 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight">
+              <h3 className="font-sans text-3xl md:text-4xl font-medium uppercase tracking-wide">
                 {item.title}
               </h3>
             </div>

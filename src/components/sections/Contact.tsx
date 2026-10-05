@@ -34,7 +34,7 @@ export default function Contact() {
   };
 
   return (
-    <footer id="contact" className="pt-32 pb-12 px-6 md:px-12 lg:px-12 bg-black text-white border-t border-white/20">
+    <footer id="contact" className="pt-32 pb-12 px-6 md:px-12 lg:px-12 bg-atmospheric text-white border-t border-white/20 relative overflow-hidden" style={{ '--light-x': '90%', '--light-y': '50%' } as React.CSSProperties}>
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-24 mb-32">
         
         {/* Left: Massive CTA */}
@@ -47,7 +47,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter leading-[0.9] mb-12"
+            className="font-editorial text-5xl md:text-7xl lg:text-8xl tracking-tight uppercase leading-[0.9] mb-12"
           >
             LET&apos;S BUILD<br />SOMETHING.
           </motion.h2>
@@ -64,7 +64,7 @@ export default function Contact() {
               animate={{ opacity: 1 }} 
               className="py-12 border border-white/20 p-8 text-center"
             >
-              <h3 className="font-display text-2xl uppercase tracking-tight mb-4">Inquiry Received</h3>
+              <h3 className="font-sans font-medium text-2xl uppercase tracking-wide mb-4">Inquiry Received</h3>
               <p className="text-gray-400 font-light text-sm">
                 I&apos;ll review your details and get back to you shortly with next steps.
               </p>
@@ -152,7 +152,7 @@ export default function Contact() {
               <button 
                 type="submit" 
                 disabled={formState === "submitting"}
-                className="group w-full py-6 border border-white text-white font-display text-xl uppercase tracking-widest hover:bg-white hover:text-black transition-colors disabled:opacity-50 flex items-center justify-center gap-4"
+                className="group w-full py-6 border border-white text-white font-sans font-medium text-sm md:text-base uppercase tracking-widest hover:bg-white hover:text-black transition-colors disabled:opacity-50 flex items-center justify-center gap-4"
               >
                 {formState === "submitting" ? "Sending..." : "Start A Project"}
                 {formState !== "submitting" && (

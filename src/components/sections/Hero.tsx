@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center px-6 md:px-12 lg:px-16 overflow-hidden bg-[#0a0a0a] text-white pt-20">
+    <section className="relative min-h-screen w-full flex items-center justify-center px-6 md:px-12 lg:px-16 overflow-hidden bg-atmospheric text-white pt-20" style={{ '--light-x': '50%', '--light-y': '30%' } as React.CSSProperties}>
       
       {/* Background Image / Sculpture with Radial Fade Mask */}
       <div className="absolute inset-0 z-0 flex items-center justify-center opacity-90">

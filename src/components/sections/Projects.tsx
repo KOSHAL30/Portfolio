@@ -26,7 +26,7 @@ export default function Projects() {
   });
 
   return (
-    <section id="projects" className="bg-black text-white relative">
+    <section id="projects" className="bg-atmospheric text-white relative" style={{ '--light-x': '70%', '--light-y': '20%' } as React.CSSProperties}>
       
       {/* Header section - standard scroll */}
       <div className="pt-32 px-6 md:px-12 lg:px-12">
@@ -34,7 +34,7 @@ export default function Projects() {
           <span className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-6">
             WORKS
           </span>
-          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter">
+          <h2 className="font-editorial text-5xl md:text-7xl lg:text-8xl tracking-tight uppercase">
             Selected works
           </h2>
         </div>
@@ -173,7 +173,7 @@ export default function Projects() {
                     {/* Details Below */}
                     <div className="w-full lg:w-[80%] mt-6 md:mt-8 flex flex-col md:flex-row justify-between items-start gap-4 md:gap-8">
                        <div className="flex-1">
-                          <h3 className="text-2xl md:text-4xl font-display font-medium tracking-tight mb-2 md:mb-3 uppercase">{project.title}</h3>
+                          <h3 className="text-2xl md:text-4xl font-sans font-medium tracking-wide mb-2 md:mb-3 uppercase">{project.title}</h3>
                           <p className="text-sm text-gray-400 max-w-md leading-relaxed">{project.description}</p>
                        </div>
                        

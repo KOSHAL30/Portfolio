@@ -5,10 +5,10 @@ import { siteData } from "@/data/siteData";
 
 export default function Services() {
   return (
-    <section id="services" className="py-32 px-6 md:px-12 lg:px-12 bg-black text-white">
+    <section id="services" className="py-32 px-6 md:px-12 lg:px-12 bg-atmospheric text-white" style={{ '--light-x': '30%', '--light-y': '50%' } as React.CSSProperties}>
       
       <div className="mb-24 flex justify-between items-end border-b border-white/20 pb-8">
-        <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight">
+        <h2 className="font-editorial text-5xl md:text-7xl lg:text-8xl tracking-tight uppercase">
           Capabilities
         </h2>
         <span className="text-xs uppercase tracking-widest text-gray-400">
@@ -28,14 +28,14 @@ export default function Services() {
           >
             {/* Number */}
             <div className="w-full md:w-1/6 mb-6 md:mb-0">
-              <span className="font-display text-2xl text-gray-500 group-hover:text-white transition-colors">
+              <span className="font-sans text-2xl font-medium text-gray-500 group-hover:text-white transition-colors">
                 0{index + 1}
               </span>
             </div>
 
             {/* Title & Price */}
             <div className="w-full md:w-2/6 mb-6 md:mb-0 pr-8">
-              <h3 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight mb-4">
+              <h3 className="font-sans text-3xl md:text-4xl font-medium uppercase tracking-wide mb-4">
                 {service.title}
               </h3>
               <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500 group-hover:text-gray-400 transition-colors">
@@ -73,7 +73,7 @@ export default function Services() {
         </p>
         <a 
           href="#contact" 
-          className="group inline-flex items-center gap-4 text-xl md:text-3xl font-display font-bold uppercase tracking-tight hover:text-gray-300 transition-colors"
+          className="group inline-flex items-center gap-4 text-xl md:text-3xl font-editorial font-bold uppercase tracking-wide hover:text-gray-300 transition-colors"
         >
           Start A Project
           <span className="group-hover:translate-x-2 transition-transform">→</span>
