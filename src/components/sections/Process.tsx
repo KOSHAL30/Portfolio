@@ -23,35 +23,29 @@ export default function Process() {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+        <div className="flex flex-col border-t border-[#09090B]/10">
           {siteData.process.map((step, index) => (
             <motion.div 
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
-              className="relative flex flex-col group"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="group relative flex flex-col md:flex-row justify-between items-start md:items-center py-16 md:py-24 border-b border-[#09090B]/10 gap-8 hover:bg-[#09090B]/[0.02] transition-colors duration-500 px-4 -mx-4 rounded-xl"
             >
-              {/* Animated Top Border */}
-              <div className="absolute top-0 left-0 w-full h-[1px] bg-[#09090B]/10">
-                <motion.div 
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.15, ease: "easeInOut" }}
-                  className="h-full bg-[#09090B] origin-left"
-                ></motion.div>
-              </div>
-
-              <div className="pt-6 flex flex-col h-full">
-                <span className="text-[10px] font-mono tracking-widest text-gray-500 mb-6">
-                  PHASE {step.step}
+              {/* Left Side: Number & Title */}
+              <div className="flex flex-col md:w-1/2">
+                <span className="text-xs md:text-sm font-mono tracking-widest text-gray-400 mb-8">
+                  [ PHASE {step.step} ]
                 </span>
-                <h3 className="text-2xl font-sans font-medium uppercase tracking-wide mb-4 group-hover:translate-x-2 transition-transform duration-300">
+                <h3 className="text-4xl md:text-5xl lg:text-6xl font-editorial uppercase tracking-tight group-hover:translate-x-4 transition-transform duration-500">
                   {step.title}
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed font-light">
+              </div>
+
+              {/* Right Side: Description */}
+              <div className="md:w-5/12 pt-4 md:pt-0">
+                <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed font-light">
                   {step.description}
                 </p>
               </div>
