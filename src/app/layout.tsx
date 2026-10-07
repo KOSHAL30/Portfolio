@@ -3,7 +3,7 @@ import { Inter, Space_Grotesk, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import Preloader from "@/components/ui/Preloader";
-import CustomCursor from "@/components/ui/CustomCursor";
+
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
@@ -39,10 +39,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${bodoniModa.variable} font-sans antialiased bg-[#FAFAFA] text-[#09090B] selection:bg-[#09090B] selection:text-white cursor-none`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${bodoniModa.variable} font-sans antialiased bg-[#FAFAFA] text-[#09090B] selection:bg-[#09090B] selection:text-white `}
       >
         <Preloader />
-        <CustomCursor />
+        
         <SmoothScroll>
           {children}
         </SmoothScroll>
