@@ -43,3 +43,6 @@ html.lenis, html.lenis body {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+@utility preserve-3d { transform-style: preserve-3d; }
+
