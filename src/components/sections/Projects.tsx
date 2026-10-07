@@ -13,7 +13,7 @@ export default function Projects() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % totalProjects);
-    }, 7000);
+    }, 5000);
     return () => clearInterval(timer);
   }, [totalProjects]);
 
