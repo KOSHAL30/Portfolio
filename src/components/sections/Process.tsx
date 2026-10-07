@@ -14,18 +14,18 @@ export default function Process() {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <section id="process" ref={containerRef} className="py-32 px-6 md:px-12 lg:px-12 bg-atmospheric text-white relative" style={{ '--light-x': '10%', '--light-y': '80%' } as React.CSSProperties}>
+    <section id="process" ref={containerRef} className="py-32 px-6 md:px-12 lg:px-12 bg-atmospheric text-[#09090B] relative" style={{ '--light-x': '10%', '--light-y': '80%' } as React.CSSProperties}>
       
-      <motion.div style={{ opacity }} className="mb-16 md:mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-0 border-b border-white/20 pb-8">
+      <motion.div style={{ opacity }} className="mb-16 md:mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-0 border-b border-[#09090B]/20 pb-8">
         <h2 className="font-editorial text-[clamp(3rem,10vw,4.5rem)] md:text-6xl lg:text-7xl tracking-tight uppercase leading-none">
           Methodology
         </h2>
-        <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-mono">
+        <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-600 font-mono">
           [ The Approach ]
         </span>
       </motion.div>
 
-      <div className="flex flex-col border-t border-white/20">
+      <div className="flex flex-col border-t border-[#09090B]/20">
         {siteData.process.map((item, index) => (
           <motion.div
             key={index}
@@ -33,11 +33,11 @@ export default function Process() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="group flex flex-col md:flex-row border-b border-white/20 py-12 md:py-16 hover:bg-white/5 transition-colors px-4 md:px-0"
+            className="group flex flex-col md:flex-row border-b border-[#09090B]/20 py-12 md:py-16 hover:bg-white/5 transition-colors px-4 md:px-0"
           >
             {/* Number */}
             <div className="w-full md:w-1/6 mb-6 md:mb-0">
-              <span className="font-sans text-3xl md:text-5xl font-medium text-gray-500 group-hover:text-white transition-colors">
+              <span className="font-sans text-3xl md:text-5xl font-medium text-gray-500 group-hover:text-[#09090B] transition-colors">
                 {item.step}
               </span>
             </div>
@@ -51,7 +51,7 @@ export default function Process() {
 
             {/* Description */}
             <div className="w-full md:w-3/6 flex flex-col justify-center">
-              <p className="text-gray-400 md:text-lg font-light leading-relaxed max-w-lg group-hover:text-gray-300 transition-colors">
+              <p className="text-gray-600 md:text-lg font-light leading-relaxed max-w-lg group-hover:text-gray-300 transition-colors">
                 {item.description}
               </p>
             </div>

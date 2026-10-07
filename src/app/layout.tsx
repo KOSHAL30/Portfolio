@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${bodoniModa.variable} font-sans antialiased bg-black text-white selection:bg-white selection:text-black`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${bodoniModa.variable} font-sans antialiased bg-[#FAFAFA] text-[#09090B] selection:bg-[#09090B] selection:text-white`}
       >
         <SmoothScroll>
           {children}

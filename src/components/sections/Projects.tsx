@@ -26,11 +26,11 @@ export default function Projects() {
   });
 
   return (
-    <section id="projects" className="bg-atmospheric text-white relative" style={{ '--light-x': '70%', '--light-y': '20%' } as React.CSSProperties}>
+    <section id="projects" className="bg-atmospheric text-[#09090B] relative" style={{ '--light-x': '70%', '--light-y': '20%' } as React.CSSProperties}>
       
       {/* Header section - standard scroll */}
       <div className="pt-32 px-6 md:px-12 lg:px-12">
-        <div className="flex flex-col items-center justify-center pb-8 lg:pb-16 border-b border-white/10">
+        <div className="flex flex-col items-center justify-center pb-8 lg:pb-16 border-b border-[#09090B]/10">
           <span className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-6">
             WORKS
           </span>
@@ -136,10 +136,10 @@ export default function Projects() {
 
                     {/* Mobile Meta */}
                     <div className="w-full lg:hidden flex justify-between items-center mb-6 px-2">
-                       <div className="text-left font-mono text-[10px] uppercase tracking-widest text-gray-400">
+                       <div className="text-left font-mono text-[10px] uppercase tracking-widest text-gray-600">
                           0{index + 1} / 0{totalProjects}
                        </div>
-                       <div className="text-right text-[10px] uppercase tracking-widest text-gray-400 font-mono">
+                       <div className="text-right text-[10px] uppercase tracking-widest text-gray-600 font-mono">
                           {project.category}
                        </div>
                     </div>
@@ -149,7 +149,7 @@ export default function Projects() {
                       
                       {/* Floating Pill on Hover */}
                       <div className="absolute top-6 md:top-8 inset-x-0 mx-auto w-max z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                         <div className="flex items-center gap-4 bg-white/10 backdrop-blur-md px-4 md:px-5 py-2 md:py-2.5 rounded-full border border-white/20 text-[10px] md:text-xs font-medium uppercase tracking-wider">
+                         <div className="flex items-center gap-4 bg-white/10 backdrop-blur-md px-4 md:px-5 py-2 md:py-2.5 rounded-full border border-[#09090B]/20 text-[10px] md:text-xs font-medium uppercase tracking-wider">
                            <span>{project.title}</span>
                            <div className="w-[1px] h-3 bg-white/30"></div>
                            <span>See work</span>
@@ -174,7 +174,7 @@ export default function Projects() {
                     <div className="w-full lg:w-[80%] mt-6 md:mt-8 flex flex-col md:flex-row justify-between items-start gap-4 md:gap-8">
                        <div className="flex-1">
                           <h3 className="text-2xl md:text-4xl font-sans font-medium tracking-wide mb-2 md:mb-3 uppercase">{project.title}</h3>
-                          <p className="text-sm text-gray-400 max-w-md leading-relaxed">{project.description}</p>
+                          <p className="text-sm text-gray-600 max-w-md leading-relaxed">{project.description}</p>
                        </div>
                        
                        <div className="hidden lg:block text-right">

@@ -34,7 +34,7 @@ export default function Contact() {
   };
 
   return (
-    <footer id="contact" className="pt-32 pb-12 px-6 md:px-12 lg:px-12 bg-atmospheric text-white border-t border-white/20 relative overflow-hidden" style={{ '--light-x': '90%', '--light-y': '50%' } as React.CSSProperties}>
+    <footer id="contact" className="pt-32 pb-12 px-6 md:px-12 lg:px-12 bg-atmospheric text-[#09090B] border-t border-[#09090B]/20 relative overflow-hidden" style={{ '--light-x': '90%', '--light-y': '50%' } as React.CSSProperties}>
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-24 mb-32">
         
         {/* Left: Massive CTA */}
@@ -51,7 +51,7 @@ export default function Contact() {
           >
             LET&apos;S BUILD<br />SOMETHING.
           </motion.h2>
-          <p className="text-gray-400 font-light leading-relaxed max-w-md md:text-lg">
+          <p className="text-gray-600 font-light leading-relaxed max-w-md md:text-lg">
             Tell me what you&apos;re building, what you need, and where you want to go. I&apos;ll get back to you with the next steps.
           </p>
         </div>
@@ -62,10 +62,10 @@ export default function Contact() {
             <motion.div 
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }} 
-              className="py-12 border border-white/20 p-8 text-center"
+              className="py-12 border border-[#09090B]/20 p-8 text-center"
             >
               <h3 className="font-sans font-medium text-2xl uppercase tracking-wide mb-4">Inquiry Received</h3>
-              <p className="text-gray-400 font-light text-sm">
+              <p className="text-gray-600 font-light text-sm">
                 I&apos;ll review your details and get back to you shortly with next steps.
               </p>
             </motion.div>
@@ -79,9 +79,9 @@ export default function Contact() {
                     name="name"
                     required
                     placeholder=" "
-                    className="block w-full bg-transparent border-0 border-b border-white/30 py-4 text-white focus:ring-0 focus:border-white transition-colors peer placeholder-transparent rounded-none"
+                    className="block w-full bg-transparent border-0 border-b border-white/30 py-4 text-[#09090B] focus:ring-0 focus:border-white transition-colors peer placeholder-transparent rounded-none"
                   />
-                  <label htmlFor="name" className="absolute left-0 top-4 text-gray-500 text-xs md:text-sm uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-white cursor-text">
+                  <label htmlFor="name" className="absolute left-0 top-4 text-gray-500 text-xs md:text-sm uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#09090B] peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-[#09090B] cursor-text">
                     Name
                   </label>
                 </div>
@@ -93,9 +93,9 @@ export default function Contact() {
                     name="business"
                     required
                     placeholder=" "
-                    className="block w-full bg-transparent border-0 border-b border-white/30 py-4 text-white focus:ring-0 focus:border-white transition-colors peer placeholder-transparent rounded-none"
+                    className="block w-full bg-transparent border-0 border-b border-white/30 py-4 text-[#09090B] focus:ring-0 focus:border-white transition-colors peer placeholder-transparent rounded-none"
                   />
-                  <label htmlFor="business" className="absolute left-0 top-4 text-gray-500 text-xs md:text-sm uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-white cursor-text">
+                  <label htmlFor="business" className="absolute left-0 top-4 text-gray-500 text-xs md:text-sm uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#09090B] peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-[#09090B] cursor-text">
                     Business / Project
                   </label>
                 </div>
@@ -108,9 +108,9 @@ export default function Contact() {
                   name="email"
                   required
                   placeholder=" "
-                  className="block w-full bg-transparent border-0 border-b border-white/30 py-4 text-white focus:ring-0 focus:border-white transition-colors peer placeholder-transparent rounded-none"
+                  className="block w-full bg-transparent border-0 border-b border-white/30 py-4 text-[#09090B] focus:ring-0 focus:border-white transition-colors peer placeholder-transparent rounded-none"
                 />
-                <label htmlFor="email" className="absolute left-0 top-4 text-gray-500 text-xs md:text-sm uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-white cursor-text">
+                <label htmlFor="email" className="absolute left-0 top-4 text-gray-500 text-xs md:text-sm uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#09090B] peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-[#09090B] cursor-text">
                   Email
                 </label>
               </div>
@@ -122,9 +122,9 @@ export default function Contact() {
                   name="goal"
                   required
                   placeholder=" "
-                  className="block w-full bg-transparent border-0 border-b border-white/30 py-4 text-white focus:ring-0 focus:border-white transition-colors peer placeholder-transparent rounded-none"
+                  className="block w-full bg-transparent border-0 border-b border-white/30 py-4 text-[#09090B] focus:ring-0 focus:border-white transition-colors peer placeholder-transparent rounded-none"
                 />
-                <label htmlFor="goal" className="absolute left-0 top-4 text-gray-500 text-xs md:text-sm uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-white cursor-text">
+                <label htmlFor="goal" className="absolute left-0 top-4 text-gray-500 text-xs md:text-sm uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#09090B] peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-[#09090B] cursor-text">
                   What are you looking to build?
                 </label>
               </div>
@@ -136,9 +136,9 @@ export default function Contact() {
                   required
                   rows={3}
                   placeholder=" "
-                  className="block w-full bg-transparent border-0 border-b border-white/30 py-4 text-white focus:ring-0 focus:border-white transition-colors peer placeholder-transparent resize-none rounded-none"
+                  className="block w-full bg-transparent border-0 border-b border-white/30 py-4 text-[#09090B] focus:ring-0 focus:border-white transition-colors peer placeholder-transparent resize-none rounded-none"
                 />
-                <label htmlFor="message" className="absolute left-0 top-4 text-gray-500 text-xs md:text-sm uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-white cursor-text">
+                <label htmlFor="message" className="absolute left-0 top-4 text-gray-500 text-xs md:text-sm uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#09090B] peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-[#09090B] cursor-text">
                   Message
                 </label>
               </div>
@@ -152,7 +152,7 @@ export default function Contact() {
               <button 
                 type="submit" 
                 disabled={formState === "submitting"}
-                className="group w-full py-6 border border-white text-white font-sans font-medium text-sm md:text-base uppercase tracking-widest hover:bg-white hover:text-black transition-colors disabled:opacity-50 flex items-center justify-center gap-4"
+                className="group w-full py-6 border border-white text-[#09090B] font-sans font-medium text-sm md:text-base uppercase tracking-widest hover:bg-[#09090B] hover:text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-4"
               >
                 {formState === "submitting" ? "Sending..." : "Start A Project"}
                 {formState !== "submitting" && (
@@ -164,12 +164,12 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-600 border-t border-white/20 pt-8">
+      <div className="flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-600 border-t border-[#09090B]/20 pt-8">
         <span>&copy; {new Date().getFullYear()} Koshal Joshi</span>
         <div className="flex gap-8 mt-6 md:mt-0">
-          <a href="https://www.linkedin.com/in/koushal-joshi-222692377" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-          <a href="https://www.instagram.com/koshal__joshi__06?stkn=MWFzazEwZnl6NDhtNA==" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
-          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WhatsApp</a>
+          <a href="https://www.linkedin.com/in/koushal-joshi-222692377" target="_blank" rel="noopener noreferrer" className="hover:text-[#09090B] transition-colors">LinkedIn</a>
+          <a href="https://www.instagram.com/koshal__joshi__06?stkn=MWFzazEwZnl6NDhtNA==" target="_blank" rel="noopener noreferrer" className="hover:text-[#09090B] transition-colors">Instagram</a>
+          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="hover:text-[#09090B] transition-colors">WhatsApp</a>
         </div>
       </div>
     </footer>
