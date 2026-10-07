@@ -67,9 +67,9 @@ export default function Projects() {
             >
               
               {/* Massive Image Container */}
-              <a 
-                href={project.link !== "#" ? project.link : undefined} 
-                className={`relative w-full flex-1 overflow-hidden bg-[#eaeaeb] rounded-xl border border-[#09090B]/5 block group`}
+              <a
+                data-cursor="VIEW WORK"
+                href={project.link !== "#" ? project.link : undefined}
 
               >
                 {/* Floating Pill on Hover */}

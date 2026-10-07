@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Magnetic from "@/components/ui/Magnetic";
 
 export default function Contact() {
   const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -151,16 +152,18 @@ export default function Contact() {
                 </div>
               )}
 
-              <button 
-                type="submit" 
-                disabled={formState === "submitting"}
-                className="group w-full py-6 mt-4 bg-white rounded-sm shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-gray-100/50 text-[#09090B] font-sans font-medium text-sm md:text-base uppercase tracking-widest hover:bg-[#09090B] hover:text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-4"
-              >
-                {formState === "submitting" ? "Sending..." : "Start A Project"}
-                {formState !== "submitting" && (
-                  <span className="group-hover:translate-x-2 transition-transform">?</span>
-                )}
-              </button>
+              <Magnetic strength={0.1}>
+                <button 
+                  type="submit" 
+                  disabled={formState === "submitting"}
+                  className="group w-full py-6 mt-4 bg-white rounded-sm shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-gray-100/50 text-[#09090B] font-sans font-medium text-sm md:text-base uppercase tracking-widest hover:bg-[#09090B] hover:text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-4"
+                >
+                  {formState === "submitting" ? "Sending..." : "Start A Project"}
+                  {formState !== "submitting" && (
+                    <span className="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                  )}
+                </button>
+              </Magnetic>
             </form>
           )}
         </div>
