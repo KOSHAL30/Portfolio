@@ -15,7 +15,7 @@ export default function Hero() {
   const mouseY = useMotionValue(0);
 
   // Smooth springs for mouse movement
-  const springConfig = { damping: 30, stiffness: 100, mass: 2 };
+  const springConfig = { damping: 20, stiffness: 150, mass: 0.1 };
   const smoothMouseX = useSpring(mouseX, springConfig);
   const smoothMouseY = useSpring(mouseY, springConfig);
 
