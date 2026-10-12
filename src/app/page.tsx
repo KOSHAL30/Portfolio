@@ -4,6 +4,7 @@ import Services from "@/components/sections/Services";
 import Projects from "@/components/sections/Projects";
 import Process from "@/components/sections/Process";
 import Contact from "@/components/sections/Contact";
+import IosTabMenu from "@/components/ui/IosTabMenu";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Projects />
       <Process />
       <Contact />
+      <IosTabMenu />
     </main>
   );
 }

@@ -68,7 +68,7 @@ export default function Hero() {
   };
 
   return (
-    <section ref={containerRef} className="relative min-h-[110vh] md:min-h-screen w-full flex items-center justify-center px-6 md:px-12 lg:px-16 overflow-hidden bg-atmospheric text-[#09090B] pt-28 md:pt-20 pb-20 md:pb-0" style={{ '--light-x': '50%', '--light-y': '30%', perspective: '1200px' } as React.CSSProperties}>
+    <section id="home" ref={containerRef} className="relative min-h-[110vh] md:min-h-screen w-full flex items-center justify-center px-6 md:px-12 lg:px-16 overflow-hidden bg-atmospheric text-[#09090B] pt-28 md:pt-20 pb-20 md:pb-0" style={{ '--light-x': '50%', '--light-y': '30%', perspective: '1200px' } as React.CSSProperties}>
       
       {/* BACKGROUND SCULPTURE - DESKTOP ONLY */}
       <div className="hidden md:flex absolute inset-0 z-0 items-center justify-center opacity-90 pointer-events-none perspective-[1200px]">
