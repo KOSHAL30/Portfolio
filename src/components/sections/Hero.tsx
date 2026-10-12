@@ -115,7 +115,7 @@ export default function Hero() {
         className="relative z-10 w-full max-w-[1600px] h-full flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-12 mt-8 md:mt-0"
       >
         
-        {/* LEFT COLUMN: Name, Cursive Accent, Mobile Sculpture, & Category */}
+        {/* LEFT COLUMN: Name, Mobile Sculpture, & Category */}
         <div className="w-full md:w-1/2 flex flex-col justify-start md:justify-center h-full pt-4 md:pt-0">
           
           <motion.div variants={itemVariants} className="mb-4 md:mb-6">
@@ -124,14 +124,10 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="mb-6 md:mb-8">
+          <motion.div variants={itemVariants} className="mb-8 md:mb-12">
             <h1 className="font-editorial text-[clamp(4.2rem,15vw,6.5rem)] leading-[0.88] md:text-8xl lg:text-[11rem] md:leading-[0.84] tracking-tight uppercase">
               KOSHAL<br />JOSHI
             </h1>
-            {/* Signature Cursive Accent (Mea Culpa script like Harsha) */}
-            <span className="font-cursive text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-500 font-normal block -mt-2 sm:-mt-4 md:-mt-6 ml-1 sm:ml-3 lowercase">
-              digital engineer &amp; product builder
-            </span>
           </motion.div>
 
           {/* BACKGROUND SCULPTURE - MOBILE ONLY */}

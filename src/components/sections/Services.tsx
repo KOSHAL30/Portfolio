@@ -12,7 +12,7 @@ export default function Services() {
   return (
     <section id="services" className="py-32 px-6 md:px-12 lg:px-16 bg-[#FAFAFA] text-[#09090B] overflow-hidden max-w-[1600px] mx-auto">
       
-      {/* Header with Cursive Accent */}
+      {/* Header */}
       <div className="mb-16 md:mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-0 border-b border-[#09090B]/10 pb-8">
         <div>
           <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-mono mb-4 block">
@@ -25,7 +25,7 @@ export default function Services() {
             transition={{ duration: 0.8 }}
             className="font-editorial text-[clamp(3rem,10vw,4.5rem)] md:text-6xl lg:text-7xl tracking-tight uppercase leading-none"
           >
-            Capabilities <span className="font-cursive lowercase text-4xl sm:text-6xl md:text-7xl text-gray-400 font-normal">&amp; engineering</span>
+            Capabilities
           </motion.h2>
         </div>
 

@@ -20,7 +20,7 @@ export default function Process() {
               transition={{ duration: 0.8 }}
               className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase max-w-2xl leading-none"
             >
-              How we get <span className="font-cursive lowercase text-4xl sm:text-6xl md:text-7xl text-gray-500 font-normal">there.</span>
+              How we get there.
             </motion.h2>
           </div>
 

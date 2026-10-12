@@ -45,7 +45,7 @@ export default function Contact() {
       {/* Container */}
       <div className="relative z-10 max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-start gap-16 lg:gap-32 mb-24 md:mb-32">
         
-        {/* Left: Massive CTA with Cursive Accent & Status Dot */}
+        {/* Left: Massive CTA */}
         <div className="w-full md:w-1/2">
           
           <span className="block text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500 mb-8">
@@ -57,12 +57,9 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.92] mb-6"
+            className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.9] mb-8"
           >
-            LET&apos;S BUILD<br />
-            <span className="font-cursive lowercase text-4xl sm:text-6xl md:text-7xl text-gray-400 font-normal">
-              something exceptional.
-            </span>
+            LET&apos;S BUILD<br />SOMETHING.
           </motion.h2>
           
           <p className="text-gray-600 font-light leading-relaxed max-w-md md:text-lg mt-6">

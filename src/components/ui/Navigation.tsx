@@ -28,10 +28,10 @@ export default function Navigation() {
   }, [isOpen]);
 
   const navLinks = [
-    { num: "01", label: "Capabilities", script: "Services", href: "#services" },
-    { num: "02", label: "Selected Works", script: "Projects", href: "#projects" },
-    { num: "03", label: "Methodology", script: "Process", href: "#process" },
-    { num: "04", label: "Let's Build", script: "Contact", href: "#contact" },
+    { num: "01", label: "Capabilities", href: "#services" },
+    { num: "02", label: "Selected Works", href: "#projects" },
+    { num: "03", label: "Methodology", href: "#process" },
+    { num: "04", label: "Let's Build", href: "#contact" },
   ];
 
   return (
@@ -136,9 +136,6 @@ export default function Navigation() {
                       </span>
                       <span className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight uppercase group-hover:translate-x-3 transition-transform duration-300">
                         {item.label}
-                      </span>
-                      <span className="font-cursive text-3xl sm:text-4xl md:text-5xl text-gray-400 opacity-60 group-hover:opacity-100 group-hover:text-emerald-400 transition-all lowercase">
-                        {item.script}
                       </span>
                     </a>
                   </motion.div>

@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Mea+Culpa&display=swap');
 @import "tailwindcss";
 
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-space), ui-sans-serif, system-ui, sans-serif;
   --font-editorial: var(--font-bodoni), ui-serif, Georgia, serif;
-  --font-cursive: 'Mea Culpa', cursive;
 }
 
 body {
@@ -14,10 +12,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-}
-
-@utility font-cursive {
-  font-family: 'Mea Culpa', cursive;
 }
 
 @utility bg-atmospheric {

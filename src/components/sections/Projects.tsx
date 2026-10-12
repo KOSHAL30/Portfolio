@@ -38,7 +38,7 @@ export default function Projects() {
   return (
     <section id="projects" className="relative w-full bg-[#FAFAFA] text-[#09090B] py-32 overflow-hidden">
       
-      {/* Header with Signature Cursive Contrast */}
+      {/* Header */}
       <div className="px-6 md:px-12 lg:px-16 overflow-hidden mb-16 max-w-[1600px] mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
@@ -52,7 +52,7 @@ export default function Projects() {
               [ Portfolio Showcase ]
             </span>
             <h2 className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-none">
-              Selected <span className="font-cursive lowercase text-4xl sm:text-6xl md:text-7xl text-gray-500 font-normal">works</span>
+              Selected works
             </h2>
           </div>
 
