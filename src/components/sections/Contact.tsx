@@ -167,15 +167,22 @@ export default function Contact() {
                 </div>
               )}
 
-              <Magnetic strength={0.12}>
+              <Magnetic strength={0.12} className="w-full block">
                 <button 
                   type="submit" 
                   disabled={formState === "submitting"}
-                  className="group w-full py-5 mt-3 bg-white rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-[#09090B]/10 text-[#09090B] font-sans font-medium text-sm md:text-base uppercase tracking-widest hover:bg-[#09090B] hover:text-white transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-4 cursor-pointer hover-zoom-subtle"
+                  className="group relative w-full px-8 py-4.5 sm:py-5 mt-3 bg-[#09090B] text-white rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-[#09090B] font-sans font-medium text-sm md:text-base uppercase tracking-widest hover:bg-black transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-3 cursor-pointer overflow-hidden hover-zoom-subtle"
                 >
-                  {formState === "submitting" ? "Sending..." : "Start A Project"}
+                  <span className="relative z-10">
+                    {formState === "submitting" ? "Sending..." : "Start A Project"}
+                  </span>
                   {formState !== "submitting" && (
-                    <span className="group-hover:translate-x-2 transition-transform duration-300">&rarr;</span>
+                    <span className="relative z-10 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1.5 shrink-0">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </span>
                   )}
                 </button>
               </Magnetic>
