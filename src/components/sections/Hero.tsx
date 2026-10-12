@@ -1,46 +1,10 @@
 "use client";
 
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
-import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { useRef } from "react";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Snappy yet fluid spring physics
-  const springConfig = { damping: 20, stiffness: 150, mass: 0.1 };
-  const smoothMouseX = useSpring(mouseX, springConfig);
-  const smoothMouseY = useSpring(mouseY, springConfig);
-
-  // Parallax calculations based on mouse
-  const rotateX = useTransform(smoothMouseY, [-1, 1], [12, -12]);
-  const rotateY = useTransform(smoothMouseX, [-1, 1], [-12, 12]);
-  const translateX = useTransform(smoothMouseX, [-1, 1], [-20, 20]);
-  const translateY = useTransform(smoothMouseY, [-1, 1], [-20, 20]);
-
-  // Orbit animations
-  const orbit1Rotate = useTransform(scrollYProgress, [0, 1], [-12, -45]);
-  const orbit2Rotate = useTransform(scrollYProgress, [0, 1], [0, 90]);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { innerWidth, innerHeight } = window;
-      const x = (e.clientX / innerWidth) * 2 - 1;
-      const y = (e.clientY / innerHeight) * 2 - 1;
-      mouseX.set(x);
-      mouseY.set(y);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
 
   // Staggered text variants
   const containerVariants = {
@@ -68,45 +32,8 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" ref={containerRef} className="relative min-h-[110vh] md:min-h-screen w-full flex items-center justify-center px-6 md:px-12 lg:px-16 overflow-hidden bg-atmospheric text-[#09090B] pt-28 md:pt-20 pb-20 md:pb-0" style={{ '--light-x': '50%', '--light-y': '30%', perspective: '1200px' } as React.CSSProperties}>
+    <section id="home" ref={containerRef} className="relative min-h-[90vh] md:min-h-screen w-full flex items-center justify-center px-6 md:px-12 lg:px-16 overflow-hidden bg-atmospheric text-[#09090B] pt-28 md:pt-20 pb-16 md:pb-0" style={{ '--light-x': '50%', '--light-y': '30%' } as React.CSSProperties}>
       
-      {/* BACKGROUND SCULPTURE - DESKTOP ONLY */}
-      <div className="hidden md:flex absolute inset-0 z-0 items-center justify-center opacity-90 pointer-events-none perspective-[1200px]">
-         <motion.div 
-           style={{
-             rotateX,
-             rotateY,
-             x: translateX,
-             y: translateY,
-             WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 70%)",
-             maskImage: "radial-gradient(circle at center, black 40%, transparent 70%)"
-           }}
-           className="relative w-[80vw] h-[80vw] lg:w-[60vw] lg:h-[60vw] max-w-[900px] max-h-[900px] preserve-3d transform-gpu will-change-transform"
-         >
-           <Image 
-             src="/images/sculpture.jpg" 
-             alt="Digital Sculptural Portrait" 
-             fill
-             priority
-             quality={100}
-             className="object-contain invert mix-blend-multiply"
-             sizes="60vw"
-           />
-         </motion.div>
-      </div>
-
-      {/* FLOATING ORBITS - DESKTOP ONLY */}
-      <div className="hidden md:flex absolute inset-0 z-0 items-center justify-center pointer-events-none opacity-25">
-        <motion.div 
-           style={{ rotate: orbit1Rotate }}
-           className="w-[60vw] h-[20vw] rounded-full border border-[#09090B]/30 absolute transform-gpu"
-        ></motion.div>
-        <motion.div 
-           style={{ rotate: orbit2Rotate }}
-           className="w-[40vw] h-[40vw] rounded-full border border-[#09090B]/20 absolute transform-gpu"
-        ></motion.div>
-      </div>
-
       {/* CONTENT LAYER */}
       <motion.div 
         variants={containerVariants}
@@ -115,7 +42,7 @@ export default function Hero() {
         className="relative z-10 w-full max-w-[1600px] h-full flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-12 mt-8 md:mt-0"
       >
         
-        {/* LEFT COLUMN: Name, Mobile Sculpture, & Category */}
+        {/* LEFT COLUMN: Name, Category & Socials */}
         <div className="w-full md:w-1/2 flex flex-col justify-start md:justify-center h-full pt-4 md:pt-0">
           
           <motion.div variants={itemVariants} className="mb-4 md:mb-6">
@@ -129,31 +56,6 @@ export default function Hero() {
               KOSHAL<br />JOSHI
             </h1>
           </motion.div>
-
-          {/* BACKGROUND SCULPTURE - MOBILE ONLY */}
-          <div className="md:hidden relative w-[85vw] h-[85vw] mx-auto my-6 z-0 flex items-center justify-center opacity-90 pointer-events-none">
-             <motion.div 
-               style={{
-                 rotateX,
-                 rotateY,
-                 x: translateX,
-                 y: translateY,
-                 WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 70%)",
-                 maskImage: "radial-gradient(circle at center, black 40%, transparent 70%)"
-               }}
-               className="relative w-full h-full preserve-3d transform-gpu"
-             >
-               <Image 
-                 src="/images/sculpture.jpg" 
-                 alt="Digital Sculptural Portrait" 
-                 fill
-                 priority
-                 quality={100}
-                 className="object-contain invert mix-blend-multiply"
-                 sizes="85vw"
-               />
-             </motion.div>
-          </div>
 
           <motion.div variants={itemVariants} className="mb-8 md:mb-8">
             <p className="text-[9px] md:text-[10px] tracking-[0.25em] uppercase text-gray-500 font-medium max-w-xs md:max-w-sm leading-loose md:leading-relaxed">
