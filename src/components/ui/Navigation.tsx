@@ -50,14 +50,9 @@ export default function Navigation() {
               KJ
             </a>
             <div className="hidden sm:block w-[1px] h-4 bg-[#09090B]/15"></div>
-            
-            {/* Live Availability Status Pill */}
-            <div className="hidden sm:flex items-center gap-2.5 px-3 py-1 rounded-full bg-[#09090B]/[0.03] border border-[#09090B]/5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="text-[9px] uppercase tracking-[0.25em] text-gray-500 font-mono font-medium">
-                Available for Q4 &apos;26
-              </span>
-            </div>
+            <span className="hidden sm:block text-[9px] uppercase tracking-[0.3em] text-gray-400 font-medium font-mono">
+              Koshal Joshi
+            </span>
           </div>
           
           {/* Middle & Right: Inline Nav Links + Menu Toggle */}

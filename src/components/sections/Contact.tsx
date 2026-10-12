@@ -48,13 +48,9 @@ export default function Contact() {
         {/* Left: Massive CTA with Cursive Accent & Status Dot */}
         <div className="w-full md:w-1/2">
           
-          {/* Status Indicator (Referencing Harsha) */}
-          <div className="flex items-center gap-2.5 mb-6">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500 font-medium">
-              Accepting New Partnerships &bull; Q4 &apos;26
-            </span>
-          </div>
+          <span className="block text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500 mb-8">
+            [ Have a project in mind? ]
+          </span>
 
           <motion.h2 
             initial={{ opacity: 0, y: 40 }}
