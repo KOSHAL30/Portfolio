@@ -34,7 +34,7 @@ export default function Contact() {
       } else {
         setFormState("error");
       }
-    } catch (err) {
+    } catch {
       setFormState("error");
     }
   };
@@ -45,26 +45,43 @@ export default function Contact() {
       {/* Container */}
       <div className="relative z-10 max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-start gap-16 lg:gap-32 mb-24 md:mb-32">
         
-        {/* Left: Massive CTA */}
+        {/* Left: Massive CTA with Cursive Accent & Status Dot */}
         <div className="w-full md:w-1/2">
-          <span className="block text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500 mb-8">
-            [ Have a project in mind? ]
-          </span>
+          
+          {/* Status Indicator (Referencing Harsha) */}
+          <div className="flex items-center gap-2.5 mb-6">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500 font-medium">
+              Accepting New Partnerships &bull; Q4 &apos;26
+            </span>
+          </div>
+
           <motion.h2 
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.9] mb-12"
+            className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.92] mb-6"
           >
-            LET'S BUILD<br />SOMETHING.
+            LET&apos;S BUILD<br />
+            <span className="font-cursive lowercase text-4xl sm:text-6xl md:text-7xl text-gray-400 font-normal">
+              something exceptional.
+            </span>
           </motion.h2>
-          <p className="text-gray-600 font-light leading-relaxed max-w-md md:text-lg">
-            Tell me what you're building, what you need, and where you want to go. I'll get back to you with the next steps.
+          
+          <p className="text-gray-600 font-light leading-relaxed max-w-md md:text-lg mt-6">
+            Tell me what you&apos;re building, what you need, and where you want to go. I&apos;ll get back to you with structured next steps.
           </p>
+
+          <div className="mt-8 flex items-center gap-3">
+            <span className="text-xs font-mono text-gray-400">Direct:</span>
+            <a href="mailto:hello@koshaljoshi.com" className="text-xs font-mono text-[#09090B] underline hover-zoom-subtle">
+              hello@koshaljoshi.com
+            </a>
+          </div>
         </div>
 
-        {/* Right: Minimal Block Form */}
+        {/* Right: Minimal Block Form with Hover Zoom Lift */}
         <div className="w-full md:w-1/2 max-w-xl">
           {formState === "success" ? (
             <motion.div 
@@ -74,13 +91,13 @@ export default function Contact() {
             >
               <h3 className="font-sans font-medium text-2xl uppercase tracking-wide mb-4">Inquiry Received</h3>
               <p className="text-gray-600 font-light text-sm">
-                I'll review your details and get back to you shortly with next steps.
+                I&apos;ll review your details and get back to you shortly with next steps.
               </p>
             </motion.div>
           ) : (
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white px-6 py-5 rounded-sm shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-gray-100/50 flex flex-col">
+            <form className="space-y-5" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col hover-zoom-card focus-within:border-[#09090B]/30">
                   <label htmlFor="name" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2">
                     Name
                   </label>
@@ -89,11 +106,12 @@ export default function Contact() {
                     id="name"
                     name="name"
                     required
-                    className="w-full bg-transparent border-0 p-0 text-[#09090B] focus:ring-0 text-sm placeholder-gray-300"
+                    placeholder="Your name"
+                    className="w-full bg-transparent border-0 p-0 text-[#09090B] focus:ring-0 text-sm placeholder-gray-300 outline-none"
                   />
                 </div>
                 
-                <div className="bg-white px-6 py-5 rounded-sm shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-gray-100/50 flex flex-col">
+                <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col hover-zoom-card focus-within:border-[#09090B]/30">
                   <label htmlFor="business" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2">
                     Business / Project
                   </label>
@@ -102,12 +120,13 @@ export default function Contact() {
                     id="business"
                     name="business"
                     required
-                    className="w-full bg-transparent border-0 p-0 text-[#09090B] focus:ring-0 text-sm placeholder-gray-300"
+                    placeholder="Company or venture"
+                    className="w-full bg-transparent border-0 p-0 text-[#09090B] focus:ring-0 text-sm placeholder-gray-300 outline-none"
                   />
                 </div>
               </div>
 
-              <div className="bg-white px-6 py-5 rounded-sm shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-gray-100/50 flex flex-col">
+              <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col hover-zoom-card focus-within:border-[#09090B]/30">
                 <label htmlFor="email" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2">
                   Email
                 </label>
@@ -116,11 +135,12 @@ export default function Contact() {
                   id="email"
                   name="email"
                   required
-                  className="w-full bg-transparent border-0 p-0 text-[#09090B] focus:ring-0 text-sm placeholder-gray-300"
+                  placeholder="name@domain.com"
+                  className="w-full bg-transparent border-0 p-0 text-[#09090B] focus:ring-0 text-sm placeholder-gray-300 outline-none"
                 />
               </div>
 
-              <div className="bg-white px-6 py-5 rounded-sm shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-gray-100/50 flex flex-col">
+              <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col hover-zoom-card focus-within:border-[#09090B]/30">
                 <label htmlFor="goal" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2">
                   What are you looking to build?
                 </label>
@@ -129,11 +149,12 @@ export default function Contact() {
                   id="goal"
                   name="goal"
                   required
-                  className="w-full bg-transparent border-0 p-0 text-[#09090B] focus:ring-0 text-sm placeholder-gray-300"
+                  placeholder="AI integration, Web platform, MVP..."
+                  className="w-full bg-transparent border-0 p-0 text-[#09090B] focus:ring-0 text-sm placeholder-gray-300 outline-none"
                 />
               </div>
 
-              <div className="bg-white px-6 py-5 rounded-sm shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-gray-100/50 flex flex-col">
+              <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col hover-zoom-card focus-within:border-[#09090B]/30">
                 <label htmlFor="message" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2">
                   Message
                 </label>
@@ -142,25 +163,26 @@ export default function Contact() {
                   name="message"
                   required
                   rows={4}
-                  className="w-full bg-transparent border-0 p-0 text-[#09090B] focus:ring-0 text-sm resize-none placeholder-gray-300"
+                  placeholder="Tell me about your timeline and objectives..."
+                  className="w-full bg-transparent border-0 p-0 text-[#09090B] focus:ring-0 text-sm resize-none placeholder-gray-300 outline-none"
                 />
               </div>
 
               {formState === "error" && (
-                <div className="text-red-500 text-sm mt-4 px-2">
-                  Something went wrong. Please email me directly at hello@koshaljoshi.com.
+                <div className="text-red-500 text-sm mt-3 px-2">
+                  Something went wrong. Please reach out directly at hello@koshaljoshi.com.
                 </div>
               )}
 
-              <Magnetic strength={0.1}>
+              <Magnetic strength={0.12}>
                 <button 
                   type="submit" 
                   disabled={formState === "submitting"}
-                  className="group w-full py-6 mt-4 bg-white rounded-sm shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-gray-100/50 text-[#09090B] font-sans font-medium text-sm md:text-base uppercase tracking-widest hover:bg-[#09090B] hover:text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-4"
+                  className="group w-full py-5 mt-3 bg-white rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-[#09090B]/10 text-[#09090B] font-sans font-medium text-sm md:text-base uppercase tracking-widest hover:bg-[#09090B] hover:text-white transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-4 cursor-pointer hover-zoom-subtle"
                 >
                   {formState === "submitting" ? "Sending..." : "Start A Project"}
                   {formState !== "submitting" && (
-                    <span className="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                    <span className="group-hover:translate-x-2 transition-transform duration-300">&rarr;</span>
                   )}
                 </button>
               </Magnetic>
@@ -169,12 +191,13 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-600 border-t border-[#09090B]/10 pt-8">
-        <span>&copy; {new Date().getFullYear()} Koshal Joshi</span>
-        <div className="flex gap-8 mt-6 md:mt-0">
-          <a href="https://www.linkedin.com/in/koushal-joshi-222692377" target="_blank" rel="noopener noreferrer" className="hover:text-[#09090B] transition-colors">LinkedIn</a>
-          <a href="https://www.instagram.com/koshal__joshi__06?stkn=MWFzazEwZnl6NDhtNA==" target="_blank" rel="noopener noreferrer" className="hover:text-[#09090B] transition-colors">Instagram</a>
-          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="hover:text-[#09090B] transition-colors">WhatsApp</a>
+      {/* Footer Bottom Bar with Minimal Zoom Pills */}
+      <div className="flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500 border-t border-[#09090B]/10 pt-8 max-w-[1600px] mx-auto">
+        <span>&copy; {new Date().getFullYear()} Koshal Joshi &bull; All Rights Reserved</span>
+        <div className="flex gap-6 mt-6 md:mt-0">
+          <a href="https://www.linkedin.com/in/koushal-joshi-222692377" target="_blank" rel="noopener noreferrer" className="hover:text-[#09090B] transition-colors hover-zoom-subtle">LinkedIn</a>
+          <a href="https://www.instagram.com/koshal__joshi__06?stkn=MWFzazEwZnl6NDhtNA==" target="_blank" rel="noopener noreferrer" className="hover:text-[#09090B] transition-colors hover-zoom-subtle">Instagram</a>
+          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="hover:text-[#09090B] transition-colors hover-zoom-subtle">WhatsApp</a>
         </div>
       </div>
     </footer>

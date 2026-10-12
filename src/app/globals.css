@@ -1,14 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Mea+Culpa&display=swap');
 @import "tailwindcss";
 
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-space), ui-sans-serif, system-ui, sans-serif;
   --font-editorial: var(--font-bodoni), ui-serif, Georgia, serif;
+  --font-cursive: 'Mea Culpa', cursive;
 }
 
 body {
   background-color: #FAFAFA;
   color: #09090B;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+@utility font-cursive {
+  font-family: 'Mea Culpa', cursive;
 }
 
 @utility bg-atmospheric {
@@ -16,6 +25,36 @@ body {
   background-image: 
     radial-gradient(circle at var(--light-x, 50%) var(--light-y, 50%), #ffffff 0%, transparent 60%),
     radial-gradient(circle at 50% 50%, transparent 40%, #E8ECF0 100%);
+}
+
+/* Subtle Film Grain Overlay */
+.grain-overlay {
+  background-image: radial-gradient(#09090B 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.035;
+  pointer-events: none;
+}
+
+/* Minimal Hover Zoom Utilities */
+.hover-zoom-card {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+.hover-zoom-card:hover {
+  transform: translateY(-4px) scale(1.015);
+}
+
+.hover-zoom-subtle {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+.hover-zoom-subtle:hover {
+  transform: scale(1.03);
+}
+
+.hover-zoom-img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .hover-zoom-img {
+  transform: scale(1.04);
 }
 
 /* Hide scrollbar for an editorial feel */
@@ -44,5 +83,6 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-@utility preserve-3d { transform-style: preserve-3d; }
-
+@utility preserve-3d { 
+  transform-style: preserve-3d; 
+}
