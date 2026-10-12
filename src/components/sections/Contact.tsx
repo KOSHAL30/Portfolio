@@ -40,15 +40,15 @@ export default function Contact() {
   };
 
   return (
-    <footer id="contact" className="relative w-full bg-[#FAFAFA] text-[#09090B] px-6 md:px-12 lg:px-16 pt-32 pb-12 overflow-hidden">
+    <footer id="contact" className="relative w-full bg-[#FAFAFA] text-[#09090B] px-6 md:px-12 lg:px-16 pt-16 md:pt-20 lg:pt-24 pb-12 overflow-hidden">
       
       {/* Container */}
-      <div className="relative z-10 max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-start gap-16 lg:gap-32 mb-24 md:mb-32">
+      <div className="relative z-10 max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-24 mb-16 md:mb-20">
         
         {/* Left: Massive CTA */}
         <div className="w-full md:w-1/2">
           
-          <span className="block text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500 mb-8">
+          <span className="block text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-500 mb-4 md:mb-6">
             [ Have a project in mind? ]
           </span>
 
@@ -57,7 +57,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.9] mb-8"
+            className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.9] mb-6"
           >
             LET&apos;S BUILD<br />SOMETHING.
           </motion.h2>

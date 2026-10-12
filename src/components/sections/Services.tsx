@@ -10,10 +10,10 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-32 px-6 md:px-12 lg:px-16 bg-[#FAFAFA] text-[#09090B] overflow-hidden max-w-[1600px] mx-auto">
+    <section id="services" className="py-16 md:py-20 lg:py-24 px-6 md:px-12 lg:px-16 bg-[#FAFAFA] text-[#09090B] overflow-hidden max-w-[1600px] mx-auto">
       
       {/* Header */}
-      <div className="mb-16 md:mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-0 border-b border-[#09090B]/10 pb-8">
+      <div className="mb-12 md:mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-0 border-b border-[#09090B]/10 pb-6 md:pb-8">
         <div>
           <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-mono mb-4 block">
             [ Core Capabilities ]
@@ -45,7 +45,7 @@ export default function Services() {
             variants={{
               visible: { transition: { staggerChildren: 0.08 } }
             }}
-            className="group border-b border-[#09090B]/10 py-12 md:py-16 flex flex-col md:flex-row justify-between items-start gap-8 md:gap-16 hover:bg-[#09090B]/[0.015] hover:scale-[1.01] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] px-6 -mx-6 rounded-2xl cursor-default"
+            className="group border-b border-[#09090B]/10 py-10 md:py-12 flex flex-col md:flex-row justify-between items-start gap-8 md:gap-16 hover:bg-[#09090B]/[0.015] hover:scale-[1.01] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] px-6 -mx-6 rounded-2xl cursor-default"
           >
             
             {/* Left: Number, Title & Pricing Badge */}

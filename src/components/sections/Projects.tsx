@@ -36,16 +36,16 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="relative w-full bg-[#FAFAFA] text-[#09090B] py-32 overflow-hidden">
+    <section id="projects" className="relative w-full bg-[#FAFAFA] text-[#09090B] py-16 md:py-20 lg:py-24 overflow-hidden">
       
       {/* Header */}
-      <div className="px-6 md:px-12 lg:px-16 overflow-hidden mb-16 max-w-[1600px] mx-auto">
+      <div className="px-6 md:px-12 lg:px-16 overflow-hidden mb-10 md:mb-14 max-w-[1600px] mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col md:flex-row justify-between items-start md:items-end pb-8 border-b border-[#09090B]/10 gap-6 md:gap-0"
+          className="flex flex-col md:flex-row justify-between items-start md:items-end pb-6 md:pb-8 border-b border-[#09090B]/10 gap-6 md:gap-0"
         >
           <div>
             <span className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-4 block">
@@ -63,7 +63,7 @@ export default function Projects() {
       </div>
 
       {/* Sliding Sheets Carousel */}
-      <div className="relative w-full h-[62vh] md:h-[72vh] lg:h-[80vh] flex items-center justify-center perspective-[1200px]">
+      <div className="relative w-full h-[54vh] md:h-[62vh] lg:h-[68vh] min-h-[440px] md:min-h-[500px] max-h-[700px] flex items-center justify-center perspective-[1200px]">
         {siteData.projects.map((project, index) => {
           const slot = getSlot(index, activeIndex);
           const isActive = slot === 'center';
@@ -154,7 +154,7 @@ export default function Projects() {
       </div>
 
       {/* Carousel Controls with Minimal Zoom on Buttons */}
-      <div className="mt-12 flex justify-center items-center gap-3">
+      <div className="mt-8 md:mt-10 flex justify-center items-center gap-3">
         {siteData.projects.map((_, index) => (
           <button
             key={index}

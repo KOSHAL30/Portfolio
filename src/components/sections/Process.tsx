@@ -5,10 +5,10 @@ import { siteData } from "@/data/siteData";
 
 export default function Process() {
   return (
-    <section id="process" className="py-32 px-6 md:px-12 lg:px-16 bg-[#FAFAFA] text-[#09090B] overflow-hidden">
+    <section id="process" className="py-16 md:py-20 lg:py-24 px-6 md:px-12 lg:px-16 bg-[#FAFAFA] text-[#09090B] overflow-hidden">
       <div className="max-w-[1600px] mx-auto">
         
-        <div className="mb-20 md:mb-32 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-[#09090B]/10 pb-8">
+        <div className="mb-12 md:mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-[#09090B]/10 pb-6 md:pb-8">
           <div>
             <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-mono block mb-4">
               [ Methodology ]
@@ -37,7 +37,7 @@ export default function Process() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative flex flex-col md:flex-row justify-between items-start md:items-center py-16 md:py-20 border-b border-[#09090B]/10 gap-8 hover:bg-[#09090B]/[0.015] hover:scale-[1.01] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] px-6 -mx-6 rounded-2xl cursor-default"
+              className="group relative flex flex-col md:flex-row justify-between items-start md:items-center py-10 md:py-14 border-b border-[#09090B]/10 gap-8 hover:bg-[#09090B]/[0.015] hover:scale-[1.01] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] px-6 -mx-6 rounded-2xl cursor-default"
             >
               {/* Left Side: Number & Title */}
               <div className="flex flex-col md:w-1/2">
