@@ -68,8 +68,8 @@ export default function Contact() {
 
           <div className="mt-8 flex items-center gap-3">
             <span className="text-xs font-mono text-gray-400">Direct:</span>
-            <a href="mailto:hello@koshaljoshi.com" className="text-xs font-mono text-[#09090B] underline hover-zoom-subtle">
-              hello@koshaljoshi.com
+            <a href="mailto:koshalj08@gmail.com" className="text-xs font-mono text-[#09090B] underline hover-zoom-subtle">
+              koshalj08@gmail.com
             </a>
           </div>
         </div>
@@ -163,7 +163,7 @@ export default function Contact() {
 
               {formState === "error" && (
                 <div className="text-red-500 text-sm mt-3 px-2">
-                  Something went wrong. Please reach out directly at hello@koshaljoshi.com.
+                  Something went wrong. Please reach out directly at koshalj08@gmail.com.
                 </div>
               )}
 

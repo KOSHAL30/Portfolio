@@ -337,8 +337,8 @@ export default function Navigation() {
               <div className="lg:col-span-3 flex flex-col justify-center gap-8 font-light text-gray-300">
                 <div>
                   <span className="text-[10px] uppercase font-mono tracking-widest text-gray-500 block mb-2">Direct Inquiry</span>
-                  <a href="mailto:hello@koshaljoshi.com" className="text-base md:text-lg text-white hover:underline block font-sans">
-                    hello@koshaljoshi.com
+                  <a href="mailto:koshalj08@gmail.com" className="text-base md:text-lg text-white hover:underline block font-sans">
+                    koshalj08@gmail.com
                   </a>
                 </div>
 

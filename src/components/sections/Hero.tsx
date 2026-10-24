@@ -101,7 +101,7 @@ export default function Hero() {
               </a>
               <span className="w-[1px] h-3 bg-[#09090B]/15"></span>
               <a 
-                href="mailto:hello@koshaljoshi.com" 
+                href="mailto:koshalj08@gmail.com" 
                 aria-label="Email"
                 className="text-xs uppercase font-mono tracking-widest text-gray-600 hover:text-black transition-colors hover-zoom-subtle"
               >
