@@ -42,7 +42,7 @@ export const siteData = {
       description: "An AI-powered competency and learning platform prototype designed around personalized diagnostics and adaptive learning.",
       tech: "FASTAPI / POSTGRESQL / PGVECTOR / OLLAMA / RAG",
       image: "/projects/ai_karmayogi.png",
-      link: "#"
+      link: "https://ai-karmayogi-sih2026.vercel.app/"
     },
     {
       id: "03",

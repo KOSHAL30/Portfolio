@@ -125,9 +125,22 @@ export default function Projects() {
               {/* Details Below with Refined Typography */}
               <div className={`w-full mt-5 flex flex-col md:flex-row justify-between items-start gap-4 transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`}>
                  <div className="flex-1 overflow-hidden">
-                    <h3 className="text-xl md:text-2xl lg:text-3xl font-sans font-medium tracking-wide uppercase flex items-baseline gap-3">
-                      <span className="font-bold text-[#09090B]">{project.title}</span>
-                    </h3>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h3 className="text-xl md:text-2xl lg:text-3xl font-sans font-medium tracking-wide uppercase flex items-baseline gap-3">
+                        <span className="font-bold text-[#09090B]">{project.title}</span>
+                      </h3>
+                      {project.link !== "#" && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#09090B] text-white text-[10px] md:text-xs font-mono uppercase tracking-wider hover:bg-[#09090B]/80 transition-all shadow-sm hover:scale-[1.03]"
+                        >
+                          <span>Explore Live</span>
+                          <span>&nearr;</span>
+                        </a>
+                      )}
+                    </div>
                     <p className="text-xs md:text-sm text-gray-600 max-w-lg leading-relaxed mt-1 font-light">
                       {project.description}
                     </p>
