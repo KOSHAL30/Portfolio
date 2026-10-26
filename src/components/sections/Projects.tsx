@@ -8,14 +8,31 @@ import { siteData } from "@/data/siteData";
 export default function Projects() {
   const totalProjects = siteData.projects.length;
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoScroll, setIsAutoScroll] = useState(true);
 
-  // Auto sliding interval (5 seconds)
+  // Auto sliding interval (5 seconds) - stopped once user manually navigates
   useEffect(() => {
+    if (!isAutoScroll) return;
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % totalProjects);
     }, 5000);
     return () => clearInterval(timer);
-  }, [totalProjects]);
+  }, [totalProjects, isAutoScroll]);
+
+  const handlePrev = () => {
+    setIsAutoScroll(false);
+    setActiveIndex((prev) => (prev - 1 + totalProjects) % totalProjects);
+  };
+
+  const handleNext = () => {
+    setIsAutoScroll(false);
+    setActiveIndex((prev) => (prev + 1) % totalProjects);
+  };
+
+  const handleSelect = (index: number) => {
+    setIsAutoScroll(false);
+    setActiveIndex(index);
+  };
 
   const getSlot = (index: number, active: number) => {
     if (index === active) return 'center';
@@ -64,6 +81,45 @@ export default function Projects() {
 
       {/* Sliding Sheets Carousel */}
       <div className="relative w-full h-[54vh] md:h-[62vh] lg:h-[68vh] min-h-[440px] md:min-h-[500px] max-h-[700px] flex items-center justify-center perspective-[1200px]">
+        
+        {/* Left Arrow Button (Glassmorphism) */}
+        <button
+          onClick={handlePrev}
+          aria-label="Previous project"
+          className="absolute left-2 sm:left-4 md:left-8 lg:left-12 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-white/75 backdrop-blur-md border border-white/60 shadow-[0_8px_30px_rgba(0,0,0,0.08)] text-[#09090B] hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer group"
+        >
+          <svg
+            className="w-4 h-4 md:w-5 md:h-5 text-[#09090B] transition-transform duration-300 group-hover:-translate-x-0.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        {/* Right Arrow Button (Glassmorphism) */}
+        <button
+          onClick={handleNext}
+          aria-label="Next project"
+          className="absolute right-2 sm:right-4 md:right-8 lg:right-12 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-white/75 backdrop-blur-md border border-white/60 shadow-[0_8px_30px_rgba(0,0,0,0.08)] text-[#09090B] hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer group"
+        >
+          <svg
+            className="w-4 h-4 md:w-5 md:h-5 text-[#09090B] transition-transform duration-300 group-hover:translate-x-0.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
         {siteData.projects.map((project, index) => {
           const slot = getSlot(index, activeIndex);
           const isActive = slot === 'center';
@@ -137,7 +193,10 @@ export default function Projects() {
                           className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#09090B] text-white text-[10px] md:text-xs font-mono uppercase tracking-wider hover:bg-[#09090B]/80 transition-all shadow-sm hover:scale-[1.03]"
                         >
                           <span>Explore Live</span>
-                          <span>&nearr;</span>
+                          <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                          </svg>
                         </a>
                       )}
                     </div>
@@ -171,7 +230,7 @@ export default function Projects() {
         {siteData.projects.map((_, index) => (
           <button
             key={index}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => handleSelect(index)}
             className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer hover:scale-110 ${activeIndex === index ? "w-10 bg-[#09090B]" : "w-3 bg-[#09090B]/20 hover:bg-[#09090B]/50"}`}
             aria-label={`Go to slide ${index + 1}`}
           />
