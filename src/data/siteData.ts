@@ -51,7 +51,7 @@ export const siteData = {
       description: "A multiplayer drawing environment built around low-latency synchronization and shared canvas interaction.",
       tech: "REACT / SOCKET.IO / WEBSOCKETS / CANVAS API",
       image: "/projects/dual_doodle.png",
-      link: "#"
+      link: "https://dual-doodle.vercel.app/"
     }
   ],
   process: [
