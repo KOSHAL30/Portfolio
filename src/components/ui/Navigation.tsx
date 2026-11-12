@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
+import { INTRO_DELAY } from "@/lib/intro";
 
 type TabId = "home" | "services" | "projects" | "process" | "contact";
 
@@ -117,13 +118,15 @@ export default function Navigation() {
 
   // Lock body scroll when fullscreen menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (!isOpen) return;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
     };
   }, [isOpen]);
 
@@ -154,9 +157,9 @@ export default function Navigation() {
   return (
     <>
       <motion.nav 
-        initial={{ y: -50, opacity: 0 }}
+        initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.8, delay: INTRO_DELAY + 0.5, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-[#FAFAFA]/90 backdrop-blur-md py-3 sm:py-3.5 border-b border-[#09090B]/5 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.03)]' : 'bg-transparent py-6 sm:py-7'}`}
       >
         <div className="px-6 md:px-12 lg:px-16 flex justify-between items-center w-full max-w-[1600px] mx-auto gap-4">
@@ -254,7 +257,7 @@ export default function Navigation() {
             <a 
               href="#contact" 
               onClick={(e) => { e.preventDefault(); handleTabClick("contact", "#contact"); }}
-              className="hidden lg:inline-flex items-center gap-2 text-[10px] text-[#09090B] border border-[#09090B]/20 rounded-full px-4 py-1.5 hover:bg-[#09090B] hover:text-[#FAFAFA] transition-all duration-300 tracking-[0.2em] uppercase font-medium font-mono hover:scale-[1.03]"
+              className="hidden lg:inline-flex items-center gap-2 text-[10px] text-[#09090B] border border-[#09090B]/20 rounded-full px-4 py-1.5 hover:bg-[#09090B] hover:text-[#FAFAFA] transition-colors duration-300 tracking-[0.2em] uppercase font-medium font-mono"
             >
               Let&apos;s Talk
             </a>
@@ -263,7 +266,8 @@ export default function Navigation() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="group relative flex flex-col justify-center items-end gap-1.5 w-9 h-9 rounded-full hover:bg-black/5 transition-colors cursor-pointer"
-              aria-label="Toggle Navigation Menu"
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isOpen}
             >
               <span className={`h-[1.5px] bg-[#09090B] transition-all duration-300 ${isOpen ? 'w-5 translate-y-[3.5px] rotate-45' : 'w-5 group-hover:w-3.5'}`} />
               <span className={`h-[1.5px] bg-[#09090B] transition-all duration-300 ${isOpen ? 'w-5 -translate-y-[3.5px] -rotate-45' : 'w-3.5 group-hover:w-5'}`} />
@@ -294,10 +298,11 @@ export default function Navigation() {
                 <span className="text-[10px] uppercase font-mono tracking-widest text-gray-400">Navigation</span>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors cursor-pointer"
-                  aria-label="Close Menu"
+                  className="group w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors cursor-pointer"
+                  aria-label="Close menu"
+                  autoFocus
                 >
-                  ✕
+                  <svg aria-hidden className="w-4 h-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
                 </button>
               </div>
             </div>
@@ -308,25 +313,23 @@ export default function Navigation() {
               {/* Left Column: Oversized Links */}
               <div className="lg:col-span-8 flex flex-col justify-center gap-6 md:gap-8">
                 {navLinks.map((item, index) => (
-                  <motion.div
-                    key={item.num}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.15 + index * 0.08, duration: 0.5, ease: "easeOut" }}
-                  >
-                    <a
+                  <div key={item.num} className="overflow-hidden pb-[0.06em]">
+                    <motion.a
                       href={item.href}
                       onClick={() => setIsOpen(false)}
+                      initial={{ y: "105%" }}
+                      animate={{ y: "0%" }}
+                      transition={{ delay: 0.2 + index * 0.07, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                       className="group flex items-baseline gap-4 md:gap-8 text-white hover:text-gray-300 transition-colors"
                     >
                       <span className="font-mono text-xs md:text-sm text-gray-500 tracking-widest">
                         {item.num}
                       </span>
-                      <span className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight uppercase group-hover:translate-x-3 transition-transform duration-300">
+                      <span className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight uppercase group-hover:translate-x-3 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                         {item.label}
                       </span>
-                    </a>
-                  </motion.div>
+                    </motion.a>
+                  </div>
                 ))}
               </div>
 
@@ -356,7 +359,7 @@ export default function Navigation() {
                       href="https://www.linkedin.com/in/koushal-joshi-222692377"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-full border border-white/20 text-xs font-mono tracking-wider hover:bg-white hover:text-black transition-all hover:scale-105"
+                      className="px-4 py-2 rounded-full border border-white/20 text-xs font-mono tracking-wider hover:bg-white hover:text-black transition-colors"
                     >
                       LinkedIn
                     </a>
@@ -364,7 +367,7 @@ export default function Navigation() {
                       href="https://www.instagram.com/koshal__joshi__06?stkn=MWFzazEwZnl6NDhtNA=="
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-full border border-white/20 text-xs font-mono tracking-wider hover:bg-white hover:text-black transition-all hover:scale-105"
+                      className="px-4 py-2 rounded-full border border-white/20 text-xs font-mono tracking-wider hover:bg-white hover:text-black transition-colors"
                     >
                       Instagram
                     </a>
@@ -372,7 +375,7 @@ export default function Navigation() {
                       href="https://wa.me/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-full border border-white/20 text-xs font-mono tracking-wider hover:bg-white hover:text-black transition-all hover:scale-105"
+                      className="px-4 py-2 rounded-full border border-white/20 text-xs font-mono tracking-wider hover:bg-white hover:text-black transition-colors"
                     >
                       WhatsApp
                     </a>

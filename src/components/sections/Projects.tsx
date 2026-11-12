@@ -1,23 +1,33 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { siteData } from "@/data/siteData";
+import RevealText from "@/components/ui/RevealText";
+
+const AUTOPLAY_MS = 5000;
 
 export default function Projects() {
   const totalProjects = siteData.projects.length;
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoScroll, setIsAutoScroll] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef, { amount: 0.4 });
+  const reduceMotion = useReducedMotion();
 
-  // Auto sliding interval (5 seconds) - stopped once user manually navigates
+  // Autoplay only while visible, not hovered, and not under reduced motion.
+  // Stops for good once the visitor navigates manually.
+  const autoplaying = isAutoScroll && inView && !isHovered && !reduceMotion;
+
   useEffect(() => {
-    if (!isAutoScroll) return;
-    const timer = setInterval(() => {
+    if (!autoplaying) return;
+    const timer = setTimeout(() => {
       setActiveIndex((prev) => (prev + 1) % totalProjects);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [totalProjects, isAutoScroll]);
+    }, AUTOPLAY_MS);
+    return () => clearTimeout(timer);
+  }, [totalProjects, autoplaying, activeIndex]);
 
   const handlePrev = () => {
     setIsAutoScroll(false);
@@ -40,10 +50,17 @@ export default function Projects() {
     return 'left';
   };
 
+  // Side sheets fall out of focus: blur reads as depth, not just distance.
   const variants = {
-    left: { x: "-85%", scale: 0.88, zIndex: 1, opacity: 0.35 },
-    center: { x: "0%", scale: 1, zIndex: 10, opacity: 1 },
-    right: { x: "85%", scale: 0.88, zIndex: 1, opacity: 0.35 },
+    left: { x: "-85%", scale: 0.88, zIndex: 1, opacity: 0.4, filter: "blur(3px)" },
+    // filter: none once settled, so the active card's backdrop-filter can see behind it
+    center: { x: "0%", scale: 1, zIndex: 10, opacity: 1, filter: "blur(0px)", transitionEnd: { filter: "none" } },
+    right: { x: "85%", scale: 0.88, zIndex: 1, opacity: 0.4, filter: "blur(3px)" },
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") { e.preventDefault(); handlePrev(); }
+    if (e.key === "ArrowRight") { e.preventDefault(); handleNext(); }
   };
 
   const projectCategories = [
@@ -53,15 +70,11 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="relative w-full bg-[#FAFAFA] text-[#09090B] py-16 md:py-20 lg:py-24 overflow-hidden">
-      
+    <section id="projects" ref={sectionRef} className="relative w-full bg-[#FAFAFA] text-[#09090B] py-16 md:py-20 lg:py-24 overflow-hidden">
+
       {/* Header */}
       <div className="px-6 md:px-12 lg:px-16 overflow-hidden mb-10 md:mb-14 max-w-[1600px] mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+        <div
           className="flex flex-col md:flex-row justify-between items-start md:items-end pb-6 md:pb-8 border-b border-[#09090B]/10 gap-6 md:gap-0"
         >
           <div>
@@ -69,19 +82,40 @@ export default function Projects() {
               [ Portfolio Showcase ]
             </span>
             <h2 className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-none">
-              Selected works
+              <RevealText lines={["Selected works"]} />
             </h2>
           </div>
 
-          <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-400">
+          <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-gray-400 tabular-nums" aria-live="polite">
             0{activeIndex + 1} &mdash; 0{totalProjects} / Interactive Carousel
           </span>
-        </motion.div>
+        </div>
       </div>
 
       {/* Sliding Sheets Carousel */}
-      <div className="relative w-full h-[54vh] md:h-[62vh] lg:h-[68vh] min-h-[440px] md:min-h-[500px] max-h-[700px] flex items-center justify-center perspective-[1200px]">
+      <div
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Selected works. Use the left and right arrow keys to browse."
+        tabIndex={0}
+        onKeyDown={handleKeyDown}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="relative w-full h-[54vh] md:h-[62vh] lg:h-[68vh] min-h-[440px] md:min-h-[500px] max-h-[700px] flex items-center justify-center perspective-[1200px]"
+      >
+        {/* Backdrop for the glass: soft ink orbs over a fading dot grid */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(rgba(9,9,11,0.09)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_50%_40%,black_20%,transparent_65%)]" />
+          {/* Orbs stay inside the card area: below the cards they would darken the page into a visible band */}
+          <div className="absolute left-[18%] top-[8%] w-[34vw] max-w-[480px] h-[56%] rounded-full bg-[radial-gradient(closest-side,rgba(9,9,11,0.22),transparent)] blur-2xl" />
+          <div className="absolute right-[16%] top-[20%] w-[28vw] max-w-[400px] h-[50%] rounded-full bg-[radial-gradient(closest-side,rgba(9,9,11,0.16),transparent)] blur-2xl" />
+        </div>
         
+        {/* Edge fades: side sheets dissolve into the page instead of being cut by the viewport.
+            Overlays, not a mask, so the active card's backdrop-filter keeps working. */}
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[14vw] bg-gradient-to-r from-[#FAFAFA] to-transparent" />
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[14vw] bg-gradient-to-l from-[#FAFAFA] to-transparent" />
+
         {/* Left Arrow Button (Glassmorphism) */}
         <button
           onClick={handlePrev}
@@ -130,9 +164,11 @@ export default function Projects() {
               initial={false}
               animate={slot}
               variants={variants}
-              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
               className="absolute w-[88%] md:w-[72%] lg:w-[62%] h-full flex flex-col transform-gpu will-change-transform"
               style={{ pointerEvents: isActive ? 'auto' : 'none' }}
+              aria-hidden={!isActive}
+              inert={!isActive}
             >
               
               {/* Harsha-style Metadata Header */}
@@ -150,26 +186,30 @@ export default function Projects() {
                 href={project.link !== "#" ? project.link : undefined}
                 target={project.link !== "#" ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className="relative w-full flex-1 overflow-hidden bg-[#ECECED] rounded-2xl border border-[#09090B]/10 block group shadow-sm transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.012] hover:shadow-2xl cursor-pointer"
+                className={`relative w-full flex-1 overflow-hidden rounded-2xl block group bg-white/20 backdrop-blur-2xl backdrop-saturate-150 border border-[#09090B]/[0.06] shadow-[0_24px_60px_-34px_rgba(9,9,11,0.3)] transition-shadow duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${project.link !== "#" ? "hover:shadow-[0_30px_60px_-30px_rgba(9,9,11,0.35)] cursor-pointer" : "cursor-default"}`}
               >
                 {/* Floating Pill on Hover */}
-                {isActive && (
-                  <div className="absolute top-6 md:top-8 inset-x-0 mx-auto w-max z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none transform group-hover:translate-y-1">
-                     <div className="flex items-center gap-3 bg-white/95 backdrop-blur-md px-5 py-2.5 rounded-full border border-[#09090B]/15 text-[10px] md:text-xs font-medium uppercase tracking-wider text-[#09090B] shadow-lg">
+                {isActive && project.link !== "#" && (
+                  <div className="absolute bottom-4 md:bottom-5 inset-x-0 mx-auto w-max z-20 opacity-0 translate-y-1.5 group-hover:opacity-100 group-hover:translate-y-0 transition-[opacity,translate] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none">
+                     <div className="flex items-center gap-3 bg-[#09090B]/85 backdrop-blur-md px-5 py-2.5 rounded-full text-[10px] md:text-xs font-medium uppercase tracking-wider text-white shadow-[0_10px_30px_-12px_rgba(9,9,11,0.5)]">
                        <span>{project.title}</span>
                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                       <span>Explore Live &rarr;</span>
+                       <span className="inline-flex items-center gap-1.5">
+                         Explore Live
+                         <svg aria-hidden className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
+                       </span>
                      </div>
                   </div>
                 )}
 
                 {/* Inner Image with Smooth Minimal Zoom on Hover */}
-                <div className="w-full h-full absolute inset-0 flex items-center justify-center p-4 md:p-8 lg:p-12 overflow-hidden">
-                  <Image 
-                    src={project.image} 
+                <div className="w-full h-full absolute inset-0 flex items-center justify-center p-3 md:p-5 lg:p-6 overflow-hidden">
+                  <Image
+                    src={project.image}
                     alt={project.title}
-                    fill
-                    className="object-contain opacity-95 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.035] p-3 md:p-6 lg:p-10"
+                    width={1024}
+                    height={592}
+                    className="w-auto h-auto max-w-full max-h-full rounded-lg md:rounded-xl ring-1 ring-[#09090B]/[0.06] shadow-[0_18px_40px_-24px_rgba(9,9,11,0.35)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
                     sizes="(max-width: 1024px) 100vw, 75vw"
                     quality={100}
                     priority={index === 0}
@@ -190,10 +230,10 @@ export default function Projects() {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#09090B] text-white text-[10px] md:text-xs font-mono uppercase tracking-wider hover:bg-[#09090B]/80 transition-all shadow-sm hover:scale-[1.03]"
+                          className="group/live inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#09090B] text-white text-[10px] md:text-xs font-mono uppercase tracking-wider hover:bg-[#09090B]/85 transition-colors shadow-sm"
                         >
                           <span>Explore Live</span>
-                          <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                          <svg aria-hidden className="w-3 h-3 text-white transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/live:translate-x-0.5 group-hover/live:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                             <line x1="7" y1="17" x2="17" y2="7"></line>
                             <polyline points="7 7 17 7 17 17"></polyline>
                           </svg>
@@ -211,7 +251,7 @@ export default function Projects() {
                       {project.tech.split(' / ').map((t, tIdx) => (
                         <span 
                           key={tIdx} 
-                          className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#09090B]/[0.04] border border-[#09090B]/5 text-gray-600 hover-zoom-subtle"
+                          className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#09090B]/[0.05] text-gray-600 hover-zoom-subtle"
                         >
                           {t}
                         </span>
@@ -226,14 +266,26 @@ export default function Projects() {
       </div>
 
       {/* Carousel Controls with Minimal Zoom on Buttons */}
-      <div className="mt-8 md:mt-10 flex justify-center items-center gap-3">
+      <div className="mt-8 md:mt-10 mx-auto w-max flex justify-center items-center gap-3 px-4 py-2.5 rounded-full bg-white/50 backdrop-blur-md shadow-[0_8px_24px_-14px_rgba(9,9,11,0.25)]">
         {siteData.projects.map((_, index) => (
           <button
             key={index}
             onClick={() => handleSelect(index)}
-            className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer hover:scale-110 ${activeIndex === index ? "w-10 bg-[#09090B]" : "w-3 bg-[#09090B]/20 hover:bg-[#09090B]/50"}`}
+            className={`relative h-1.5 rounded-full overflow-hidden transition-[width,background-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer ${activeIndex === index ? "w-10 bg-[#09090B]/25" : "w-3 bg-[#09090B]/20 hover:bg-[#09090B]/50"}`}
             aria-label={`Go to slide ${index + 1}`}
-          />
+            aria-current={activeIndex === index ? "true" : undefined}
+          >
+            {/* Active dot doubles as the autoplay timer; solid once autoplay stops */}
+            {activeIndex === index && (
+              <motion.span
+                key={`${activeIndex}-${autoplaying}`}
+                className="absolute inset-0 origin-left bg-[#09090B]"
+                initial={{ scaleX: autoplaying ? 0 : 1 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: autoplaying ? AUTOPLAY_MS / 1000 : 0, ease: "linear" }}
+              />
+            )}
+          </button>
         ))}
       </div>
 

@@ -2,11 +2,12 @@
 
 import { motion } from "framer-motion";
 import { siteData } from "@/data/siteData";
+import RevealText, { EASE_OUT_EXPO } from "@/components/ui/RevealText";
 
 export default function Services() {
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    hidden: { opacity: 0, y: 14 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE_OUT_EXPO } }
   };
 
   return (
@@ -18,15 +19,9 @@ export default function Services() {
           <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-mono mb-4 block">
             [ Core Capabilities ]
           </span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="font-editorial text-[clamp(3rem,10vw,4.5rem)] md:text-6xl lg:text-7xl tracking-tight uppercase leading-none"
-          >
-            Capabilities
-          </motion.h2>
+          <h2 className="font-editorial text-[clamp(3rem,10vw,4.5rem)] md:text-6xl lg:text-7xl tracking-tight uppercase leading-none">
+            <RevealText lines={["Capabilities"]} />
+          </h2>
         </div>
 
         <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-mono">
@@ -43,17 +38,18 @@ export default function Services() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
             variants={{
-              visible: { transition: { staggerChildren: 0.08 } }
+              visible: { transition: { staggerChildren: 0.05 } }
             }}
-            className="group border-b border-[#09090B]/10 py-10 md:py-12 flex flex-col md:flex-row justify-between items-start gap-8 md:gap-16 hover:bg-[#09090B]/[0.015] hover:scale-[1.01] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] px-6 -mx-6 rounded-2xl cursor-default"
+            className="group relative border-b border-[#09090B]/10 py-10 md:py-12 flex flex-col md:flex-row justify-between items-start gap-8 md:gap-16 hover:bg-[#09090B]/[0.02] transition-colors duration-500 px-6 -mx-6"
           >
+            <span aria-hidden className="row-rule" />
             
             {/* Left: Number, Title & Pricing Badge */}
             <div className="w-full md:w-1/3 flex flex-col gap-3">
               <span className="text-xs font-mono tracking-widest text-gray-400">
                 0{index + 1}
               </span>
-              <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-sans font-medium uppercase tracking-wide group-hover:translate-x-1 transition-transform duration-300">
+              <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-sans font-medium uppercase tracking-wide group-hover:translate-x-2 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                 {service.title}
               </motion.h3>
               <motion.span variants={itemVariants} className="text-[10px] font-mono tracking-widest text-gray-500 uppercase">

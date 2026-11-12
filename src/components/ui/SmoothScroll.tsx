@@ -1,24 +1,35 @@
 "use client";
 
 import { ReactLenis } from '@studio-freight/react-lenis';
+import { MotionConfig, useReducedMotion } from 'framer-motion';
 import { ReactNode } from 'react';
 
 export default function SmoothScroll({ children }: { children: ReactNode }) {
+  const reduce = useReducedMotion();
+
+  // Reduced motion: native scrolling, and framer drops transform animations
+  // while keeping opacity/colour changes that carry meaning.
+  if (reduce) {
+    return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+  }
+
   return (
-    <ReactLenis 
-      root 
-      options={{ 
-        lerp: 0.08, 
-        duration: 1.1, 
-        smoothWheel: true,
-        wheelMultiplier: 0.95,
-        touchMultiplier: 1.2,
-        infinite: false,
-        syncTouch: false
-      }}
-    >
-      {/* @ts-expect-error React 19 vs Lenis type mismatch */}
-      {children}
-    </ReactLenis>
+    <MotionConfig reducedMotion="user">
+      <ReactLenis
+        root
+        options={{
+          lerp: 0.08,
+          duration: 1.1,
+          smoothWheel: true,
+          wheelMultiplier: 0.95,
+          touchMultiplier: 1.2,
+          infinite: false,
+          syncTouch: false
+        }}
+      >
+        {/* @ts-expect-error React 19 vs Lenis type mismatch */}
+        {children}
+      </ReactLenis>
+    </MotionConfig>
   );
 }

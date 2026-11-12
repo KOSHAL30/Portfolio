@@ -1,10 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import RevealText from "@/components/ui/RevealText";
+import { INTRO_DELAY } from "@/lib/intro";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
+
+  // The name drifts up and recedes slightly as the hero scrolls away.
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
+  const nameY = useTransform(scrollYProgress, [0, 1], ["0%", "-18%"]);
+  const nameOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.25]);
 
   // Staggered text variants
   const containerVariants = {
@@ -12,14 +19,14 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.15
+        staggerChildren: 0.08,
+        delayChildren: INTRO_DELAY + 0.35
       }
     }
   };
 
   const itemVariants: { hidden: { opacity: number; y: number; scale: number }; visible: { opacity: number; y: number; scale: number; transition: { duration: number; ease: [number, number, number, number] } } } = {
-    hidden: { opacity: 0, y: 30, scale: 0.98 },
+    hidden: { opacity: 0, y: 18, scale: 1 },
     visible: {
       opacity: 1,
       y: 0,
@@ -51,9 +58,9 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="mb-8 md:mb-12">
+          <motion.div style={{ y: nameY, opacity: nameOpacity }} className="mb-8 md:mb-12">
             <h1 className="font-editorial text-[clamp(4.2rem,15vw,6.5rem)] leading-[0.88] md:text-8xl lg:text-[11rem] md:leading-[0.84] tracking-tight uppercase">
-              KOSHAL<br />JOSHI
+              <RevealText lines={["KOSHAL", "JOSHI"]} onMount delay={INTRO_DELAY} />
             </h1>
           </motion.div>
 
@@ -132,11 +139,13 @@ export default function Hero() {
             <div className="mt-6">
               <a 
                 href="#projects" 
-                className="group inline-flex items-center gap-4 text-[10px] uppercase tracking-[0.2em] text-[#09090B] font-medium transition-all hover:scale-[1.03]"
+                className="group inline-flex items-center gap-4 text-[10px] uppercase tracking-[0.2em] text-[#09090B] font-medium"
               >
-                View my work
-                <span className="w-9 h-9 rounded-full border border-[#09090B]/20 flex items-center justify-center group-hover:bg-[#09090B] group-hover:text-white transition-all duration-300">
-                  &rarr;
+                <span className="link-draw">View my work</span>
+                <span className="relative w-9 h-9 rounded-full border border-[#09090B]/20 flex items-center justify-center overflow-hidden transition-colors duration-300 group-hover:bg-[#09090B] group-hover:border-[#09090B] group-hover:text-white">
+                  {/* Arrow exits down, a twin enters from above: reads as "go down to the work" */}
+                  <svg aria-hidden className="w-3.5 h-3.5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14" /><path d="m19 12-7 7-7-7" /></svg>
+                  <svg aria-hidden className="absolute w-3.5 h-3.5 -translate-y-7 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14" /><path d="m19 12-7 7-7-7" /></svg>
                 </span>
               </a>
             </div>
@@ -150,11 +159,13 @@ export default function Hero() {
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
+        transition={{ duration: 1, delay: INTRO_DELAY + 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 pointer-events-none"
       >
         <span className="text-[9px] uppercase tracking-[0.3em] text-gray-400 font-medium">Scroll</span>
-        <div className="w-[1px] h-10 bg-gradient-to-b from-gray-400 to-transparent"></div>
+        <div className="w-px h-10 bg-[#09090B]/10 overflow-hidden">
+          <div className="scroll-cue w-full h-full bg-[#09090B]/50" />
+        </div>
       </motion.div>
 
     </section>

@@ -29,19 +29,20 @@ body {
   pointer-events: none;
 }
 
-/* Minimal Hover Zoom Utilities */
+/* Hover utilities — lift/shadow only; text never scales (it blurs and reflows). */
 .hover-zoom-card {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
 }
 .hover-zoom-card:hover {
-  transform: translateY(-4px) scale(1.015);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -18px rgba(9, 9, 11, 0.18);
 }
 
 .hover-zoom-subtle {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
 }
 .hover-zoom-subtle:hover {
-  transform: scale(1.03);
+  transform: translateY(-1px);
 }
 
 .hover-zoom-img {
@@ -49,6 +50,77 @@ body {
 }
 .group:hover .hover-zoom-img {
   transform: scale(1.04);
+}
+
+/* Editorial row rule: a hairline draws across the row on hover/focus. */
+.row-rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: #09090B;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.group:hover > .row-rule,
+.group:focus-within > .row-rule {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Underline that draws in, for inline text links. */
+.link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-bottom: 2px;
+}
+.link-draw:hover {
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+}
+
+/* Browser surfaces carry the palette too. */
+:focus-visible {
+  outline: 1.5px solid #09090B;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+input, textarea {
+  caret-color: #09090B;
+}
+::selection {
+  background: #09090B;
+  color: #FAFAFA;
+}
+
+@keyframes scroll-cue {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.scroll-cue {
+  animation: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-zoom-card:hover,
+  .hover-zoom-subtle:hover,
+  .group:hover .hover-zoom-img {
+    transform: none;
+  }
+  .scroll-cue {
+    animation: none;
+  }
+  .row-rule {
+    transition-duration: 0.01ms;
+  }
 }
 
 /* Hide scrollbar for an editorial feel */

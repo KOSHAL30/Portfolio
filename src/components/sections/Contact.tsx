@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Magnetic from "@/components/ui/Magnetic";
+import RevealText, { EASE_OUT_EXPO } from "@/components/ui/RevealText";
 
 export default function Contact() {
   const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -52,15 +53,9 @@ export default function Contact() {
             [ Have a project in mind? ]
           </span>
 
-          <motion.h2 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.9] mb-6"
-          >
-            LET&apos;S BUILD<br />SOMETHING.
-          </motion.h2>
+          <h2 className="font-editorial text-5xl md:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.9] mb-6">
+            <RevealText lines={["LET'S BUILD", "SOMETHING."]} />
+          </h2>
           
           <p className="text-gray-600 font-light leading-relaxed max-w-md md:text-lg mt-6">
             Tell me what you&apos;re building, what you need, and where you want to go. I&apos;ll get back to you with structured next steps.
@@ -68,7 +63,7 @@ export default function Contact() {
 
           <div className="mt-8 flex items-center gap-3">
             <span className="text-xs font-mono text-gray-400">Direct:</span>
-            <a href="mailto:koshalj08@gmail.com" className="text-xs font-mono text-[#09090B] underline hover-zoom-subtle">
+            <a href="mailto:koshalj08@gmail.com" className="link-draw text-xs font-mono text-[#09090B]">
               koshalj08@gmail.com
             </a>
           </div>
@@ -77,11 +72,17 @@ export default function Contact() {
         {/* Right: Minimal Block Form with Hover Zoom Lift */}
         <div className="w-full md:w-1/2 max-w-xl">
           {formState === "success" ? (
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              className="py-12 bg-gray-100 p-8 text-center rounded-xl"
+            <motion.div
+              initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
+              className="py-12 bg-white border border-[#09090B]/10 p-8 text-center rounded-xl"
+              role="status"
             >
+              <svg aria-hidden className="w-10 h-10 mx-auto mb-6 text-[#09090B]" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <motion.circle cx="20" cy="20" r="18" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6, ease: EASE_OUT_EXPO }} />
+                <motion.path d="M13 20.5l5 5 9-10" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.4, delay: 0.45, ease: EASE_OUT_EXPO }} />
+              </svg>
               <h3 className="font-sans font-medium text-2xl uppercase tracking-wide mb-4">Inquiry Received</h3>
               <p className="text-gray-600 font-light text-sm">
                 I&apos;ll review your details and get back to you shortly with next steps.
@@ -90,8 +91,8 @@ export default function Contact() {
           ) : (
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col hover-zoom-card focus-within:border-[#09090B]/30">
-                  <label htmlFor="name" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2">
+                <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col group transition-[border-color,box-shadow] duration-300 hover:border-[#09090B]/15 focus-within:border-[#09090B]/40 focus-within:shadow-[0_10px_30px_-18px_rgba(9,9,11,0.35)]">
+                  <label htmlFor="name" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2 transition-colors duration-300 group-focus-within:text-[#09090B]">
                     Name
                   </label>
                   <input 
@@ -104,8 +105,8 @@ export default function Contact() {
                   />
                 </div>
                 
-                <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col hover-zoom-card focus-within:border-[#09090B]/30">
-                  <label htmlFor="business" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2">
+                <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col group transition-[border-color,box-shadow] duration-300 hover:border-[#09090B]/15 focus-within:border-[#09090B]/40 focus-within:shadow-[0_10px_30px_-18px_rgba(9,9,11,0.35)]">
+                  <label htmlFor="business" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2 transition-colors duration-300 group-focus-within:text-[#09090B]">
                     Business / Project
                   </label>
                   <input 
@@ -119,8 +120,8 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col hover-zoom-card focus-within:border-[#09090B]/30">
-                <label htmlFor="email" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2">
+              <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col group transition-[border-color,box-shadow] duration-300 hover:border-[#09090B]/15 focus-within:border-[#09090B]/40 focus-within:shadow-[0_10px_30px_-18px_rgba(9,9,11,0.35)]">
+                <label htmlFor="email" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2 transition-colors duration-300 group-focus-within:text-[#09090B]">
                   Email
                 </label>
                 <input 
@@ -133,8 +134,8 @@ export default function Contact() {
                 />
               </div>
 
-              <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col hover-zoom-card focus-within:border-[#09090B]/30">
-                <label htmlFor="goal" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2">
+              <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col group transition-[border-color,box-shadow] duration-300 hover:border-[#09090B]/15 focus-within:border-[#09090B]/40 focus-within:shadow-[0_10px_30px_-18px_rgba(9,9,11,0.35)]">
+                <label htmlFor="goal" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2 transition-colors duration-300 group-focus-within:text-[#09090B]">
                   What are you looking to build?
                 </label>
                 <input 
@@ -147,8 +148,8 @@ export default function Contact() {
                 />
               </div>
 
-              <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col hover-zoom-card focus-within:border-[#09090B]/30">
-                <label htmlFor="message" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2">
+              <div className="bg-white px-6 py-5 rounded-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.04)] border border-[#09090B]/5 flex flex-col group transition-[border-color,box-shadow] duration-300 hover:border-[#09090B]/15 focus-within:border-[#09090B]/40 focus-within:shadow-[0_10px_30px_-18px_rgba(9,9,11,0.35)]">
+                <label htmlFor="message" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-medium mb-2 transition-colors duration-300 group-focus-within:text-[#09090B]">
                   Message
                 </label>
                 <textarea 
@@ -162,7 +163,7 @@ export default function Contact() {
               </div>
 
               {formState === "error" && (
-                <div className="text-red-500 text-sm mt-3 px-2">
+                <div role="alert" className="text-red-600 text-sm mt-3 px-2">
                   Something went wrong. Please reach out directly at koshalj08@gmail.com.
                 </div>
               )}
